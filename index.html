@@ -32,15 +32,15 @@
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
                     <li><a href="#" class="nav-link px-2 link-dark">¿Quienes Somos?</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">Iniciar Seción</a></li>
+                    <li><a href="#" class="nav-link px-2 link-dark">Iniciar Sessión</a></li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                    <input type="search" class="form-control form-control-dark" placeholder="Search..."
+                    <input type="search" class="form-control form-control-dark" placeholder="Buscar..."
                         aria-label="Search">
                 </form>
                 <div class="text-end">
-                    <button type="button" class="btn btn-outline-dark me-2">Search</button>
+                    <button type="button" class="btn btn-outline-dark me-2">Buscar</button>
                 </div>
 
             </div>
@@ -60,22 +60,32 @@
                 <!--Seccion Formulario Derecha-->
                 <div class="col-lg-5 mx-auto">
                     <form class="p-4 p-md-5 border rounded-3 bg-light">
+                        <fieldset>
+                            <legend><figure class="text-center text-dark">Inicio de Session</figure></legend>    
                         <div class="form-floating mb-3">
                             <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Email address</label>
+                            <label for="floatingInput">Email </label>
                         </div>
                         <div class="form-floating mb-3">
                             <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
                             <label for="floatingPassword">Password</label>
                         </div>
+                        <div class="d-grid gap-2 d-md-block">
                         <div class="checkbox mb-3">
                             <label>
-                                <input type="checkbox" value="remember-me"> Remember me
+                                <input type="checkbox" value="remember-me"> Recordar en este equipo
                             </label>
                         </div>
-                        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+                        <div class="checkbox mb-3">
+                            <label>
+                                <input type="button" class="btn btn-outline-success" value="Olvide mi Password"> 
+                            </label>
+                        </div>
+                        <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar Session</button>
                         <hr class="my-4">
-                        <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+                        <figure class="text-center">Crea tu cuenta desde <a href="registro.html">aqui</a> <small class="text-muted">y recibe 10USD para empezar</small> </figure>
+                        
+                        </fieldset>
                     </form>
                 </div>
             </div>
