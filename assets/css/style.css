@@ -1,9 +1,5 @@
-
-
 .imagen_cabecera {
   background-image: url('../images/blockchain.jpg');
-  background-color: midnightblue;
-  height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
