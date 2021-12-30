@@ -4,3 +4,9 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.imagen_leyenda_footer {
+  background-image: url('../images/criptos.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
