@@ -6,7 +6,10 @@
 }
 .imagen_leyenda_footer {
   background-image: url('../images/BannerCripto1.jpg');
+  margin-top: 1px;
+  margin-bottom: 1px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
