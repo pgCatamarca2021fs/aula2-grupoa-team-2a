@@ -12,4 +12,11 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.warnings {
+  width: 200px;
+  text-align: center;
+  margin: auto;
+  color:blanchedalmond;
+  padding-top: 20px;
+}
 
