@@ -22,7 +22,7 @@
 
 
 
-    <title>Landing Crypto Cat Exchange</title>
+    <title>Mi Tablero - Crypto Cat Exchange</title>
 
 </head>
 
@@ -60,47 +60,86 @@
     <!--Contenido Dashboard-->
 
     <!--Contenido Tarjetas Arriba-->
-    <main>
-        <div class="container">
+    <main class="dashboard">
+        <div class="container pt-4">
             <div class="row">
 
                 <div class="col-xl-6 col-sm-12 mb-xl-0 mb-4">
                     <div class="card shadow-sm">
                         <div class="card-header p-3">
-                            Mi Cuenta en Pesos
+                            <i class="bi bi-wallet2"></i> Mi Cuenta
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title">$17.500</h4>
 
-                            <div class="d-flex flex-column flex-md-row justify-content-center">
-                        
+                <div class="row">
+                    <div class="col-xl-6 col-sm-12 mb-xl-0 mb-4">
+                            <h4 class="card-title"><i class="bi bi-coin"></i> Pesos Argentinos</h4>
+                            <h2>85500</h2>
+
+                            <div class="d-flex  justify-content-center">
                             <div class="px-3 py-2">
-                                <a href="#" class="btn btn-secondary">Ingresar Dinero</a>
+                                <a href="#" class="btn btn-outline-secondary btn-sm">Ingresar $</a>
                             </div>
                             <div class="px-3 py-2">
-                                <a href="#" class="btn btn-secondary">Retirar Dinero</a>
+                                <a href="#" class="btn btn-outline-secondary btn-sm">Retirar $</a>
+                            </div>
                             </div>
                         </div>
+
+
+                        <div class="col-xl-6 col-sm-12 mb-xl-0 mb-4">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                      <th scope="col">Crypto</th>
+                                      <th scope="col">Cantidad</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>Bitcoin</td>
+                                      <td>0.00322179</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Ethereum</td>
+                                      <td>0.02166552</td>
+                                    </tr>
+                                  </tbody>
+                             </table>
+                        </div>
+
+                        </div>
+
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <div class="card shadow-sm">
                         <div class="card-header p-3">
-                            <i class="bi bi-currency-bitcoin"></i> Balance Bitcoin
+                          <img src="/assets/images/btc.png" alt="">  Balance Bitcoin
                         </div>
                         <div class="card-body">
                             <canvas id="graficoBitcoin" style="width:100%;max-width:600px"></canvas>
+                            <select class="form-select mt-2">
+                                <option>5 Días</option>
+                                <option>Mes</option>
+                                <option>Año</option>
+                            </select>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <div class="card shadow-sm">
                         <div class="card-header p-3">
-                            Balance Ethereum
+                        <img src="/assets/images/eth.png" alt=""> Balance Ethereum
                         </div>
                         <div class="card-body">
                             <canvas id="graficoEthereum" style="width:100%;max-width:600px"></canvas>
+                            <select class="form-select mt-2">
+                                <option>5 Días</option>
+                                <option>Mes</option>
+                                <option>Año</option>
+                            </select>
                         </div>
                     </div>
 
@@ -118,7 +157,7 @@
                 <div class="col-lg-4 col-md-6 mt-4 mb-4">
                     <div class="card shadow-sm">
                         <div class="card-header p-3">
-                            Mis Ultimas Operaciones
+                            Mis Últimas Operaciones
                         </div>
                         <div class="card-body">
                             <table class="table table-hover">
@@ -159,7 +198,7 @@
                 <div class="col-lg-8 col-md-6 mt-4 mb-4">
                     <div class="card shadow-sm">
                         <div class="card-header p-3">
-                            Cotizaciones
+                            <i class="bi bi-graph-up-arrow"></i> Cotizaciones
                         </div>
                         <div class="card-body">
                             <table class="table table-hover">
@@ -169,26 +208,30 @@
                                       <th scope="col">Crypto</th>
                                       <th scope="col">Cotización</th>
                                       <th scope="col">Balance</th>
+                                      <th scope="col"></th>
                                     </tr>
                                   </thead>
                                   <tbody>
                                     <tr>
                                       <th scope="row">1</th>
-                                      <td>Bitcoin</td>
+                                      <td><img src="/assets/images/btc.png" class="iconito" alt=""> Bitcoin</td>
                                       <td>44678598.26</td>
                                       <td>+0.25</td>
+                                      <td><button type="button" class="btn btn-light btn-sm">Comprar</button></td>
                                     </tr>
                                     <tr>
                                       <th scope="row">2</th>
-                                      <td>Ethereum</td>
+                                      <td><img src="/assets/images/eth.png" class="iconito" alt=""> Ethereum</td>
                                       <td>684310.56</td>
                                       <td>-2.58</td>
+                                      <td><button type="button" class="btn btn-light btn-sm">Comprar</button></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">3</th>
-                                        <td>Binance Coin</td>
+                                        <td><img src="/assets/images/bnb.png" class="iconito" alt=""> Binance Coin</td>
                                         <td>49128.64</td>
                                         <td>+2.63</td>
+                                        <td><button type="button" class="btn btn-light btn-sm">Comprar</button></td>
                                     </tr>
                                   </tbody>
                              </table>

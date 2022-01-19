@@ -1,7 +1,7 @@
 new Chart("graficoBitcoin", {
   type: "line",
   data: {
-    labels: [1,2,3,4,5],
+    labels: ["Sáb","Dom","Lun","Mar","Hoy"],
     datasets: [{
       fill: false,
       lineTension: 0,
@@ -23,7 +23,7 @@ new Chart("graficoBitcoin", {
 new Chart("graficoEthereum", {
   type: "line",
   data: {
-    labels: [1,2,3,4,5],
+    labels: ["Sáb","Dom","Lun","Mar","Hoy"],
     datasets: [{
       fill: false,
       lineTension: 0,
