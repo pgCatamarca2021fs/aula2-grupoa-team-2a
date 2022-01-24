@@ -1,0 +1,15 @@
+.imagen_cabecera {
+    background-image: url('assets/images/blockchain.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .imagen_leyenda_footer {
+    background-image: url('assets/images/BannerCripto1.jpg');
+    margin-top: 1px;
+    margin-bottom: 1px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

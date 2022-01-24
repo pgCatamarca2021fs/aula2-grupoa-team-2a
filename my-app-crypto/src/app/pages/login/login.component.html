@@ -1,0 +1,29 @@
+<!-- Formulario de Login-->
+
+<div class="imagen_cabecera container-fluid px-4 py-5">
+  <div class="row">
+    <div class="col">
+      <form action="" metod="POST" id="form">
+        <div class="col-md-3">
+          <label for="Email" class="form-label text-light">Email: </label>
+          <input type="email" class="form-control" id="email">
+          <!--<div class="valid-feedback"> Datos Ok</div> needs-validation" novalidate
+                    <div class="invalid-feedback">Datos incorrectos</div>-->
+          <div class="col-md-12">
+            <label for="Password" class="form-label text-light">Password: </label>
+            <input type="password" class="form-control" id="password">
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="CheckIniciada">
+              <label class="form-check-label text-light" for="CheckIniciada">Mantener Iniciada mi
+                Sesion</label>
+            </div>
+            <a routerLink="/dashboard" class="btn btn-primary">Ingresar</a>
+            <p class="warnings" id="warning"></p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+<script src="assets/js/login.js"></script>
