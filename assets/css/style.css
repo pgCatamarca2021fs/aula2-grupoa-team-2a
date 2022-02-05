@@ -1,27 +1,24 @@
-.imagen_cabecera {
-  background-image: url('../images/blockchain.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
+.main-header{
+  position: relative;
+  background: url(../images/img_bitcoin8.webp);
   background-size: cover;
+  min-height: 520px;
 }
-.imagen_leyenda_footer {
-  background-image: url('../images/BannerCripto1.jpg');
-  margin-top: 1px;
-  margin-bottom: 1px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+
+.background-overlay{
+  position: absolute;
+  background: rgba(48, 51, 107,.7);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
-.warnings {
-  width: 200px;
-  text-align: center;
-  margin: auto;
-  color:blanchedalmond;
-  padding-top: 20px;
+
+.background-questions{
+  background: rgba(241, 242, 246,1.0);
 }
 
 /*Dashboard*/
-
 .dashboard {
   background: rgb(22,34,50);
   background: linear-gradient(120deg, rgba(22,34,50,1) 0%, rgba(41,67,102,1) 35%, rgba(59,97,144,1) 100%);
