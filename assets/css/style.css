@@ -1,8 +1,13 @@
+/*Landing*/
 .main-header{
   position: relative;
   background: url(../images/img_bitcoin8.webp);
   background-size: cover;
   min-height: 520px;
+}
+
+.background-questions{
+  background: rgba(241, 242, 246,1.0);
 }
 
 .background-overlay{
@@ -14,8 +19,27 @@
   height: 100%;
 }
 
-.background-questions{
-  background: rgba(241, 242, 246,1.0);
+/*Login*/
+.background-login{
+  background: url(../images/blockchain.jpg);
+  background-size: cover;
+  min-height: 200px;
+}
+
+/*Registro*/
+.background-registro{
+  background: url(../images/blockchain.jpg);
+  background-size: cover;
+  min-height: 200px;
+}
+
+input:invalid{
+  border-color: #900;
+  background-color: #FDD;
+}
+
+input:focus:invalid {
+  outline: none;
 }
 
 /*Dashboard*/

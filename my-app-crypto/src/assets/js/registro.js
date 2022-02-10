@@ -1,13 +1,4 @@
-import { Component, OnInit } from '@angular/core';
 
-@Component({
-  selector: 'app-registro',
-  templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css']
-})
-export class RegistroComponent implements OnInit {
-
-/*
 const form = document.getElementById("form_registro")
 const email = document.getElementById("email")
 const pass = document.getElementById("password")
@@ -18,6 +9,14 @@ const provincia = document.getElementById("provincia")
 const cp = document.getElementById("cp")
 const acepto = document.getElementById("acepto")
 const warnings = document.getElementById("advertencia")
+
+/*const expresiones = {
+	usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+	password: /^.{4,12}$/, // 4 a 12 digitos.
+	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+	telefono: /^\d{7,14}$/ // 7 a 14 numeros.
+    */
 
 form.addEventListener('submit', e=>{
     e.preventDefault()
@@ -87,11 +86,3 @@ form.addEventListener('submit', e=>{
 
     }
 })
-
-*/
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}

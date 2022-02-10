@@ -1,13 +1,4 @@
-import { Component, OnInit } from '@angular/core';
 
-@Component({
-  selector: 'app-registro',
-  templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css']
-})
-export class RegistroComponent implements OnInit {
-
-/*
 const form = document.getElementById("form_registro")
 const email = document.getElementById("email")
 const pass = document.getElementById("password")
@@ -19,18 +10,26 @@ const cp = document.getElementById("cp")
 const acepto = document.getElementById("acepto")
 const warnings = document.getElementById("advertencia")
 
+/*const expresiones = {
+	usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+	password: /^.{4,12}$/, // 4 a 12 digitos.
+	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+	telefono: /^\d{7,14}$/ // 7 a 14 numeros.
+    */
+
 form.addEventListener('submit', e=>{
     e.preventDefault()
     let warnings = ""
-    let entrar = false
+    let entrar = false    
     let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/
     let parrafo = ""
 
     if(!regexEmail.test(email.value) || email.value === ""){
         warnings += "El email no es válido <br>"
         entrar = true
-        console.log("email INVALIDO");
-    } else {
+        console.log("email INVALIDO");               
+    } else {        
         if(pass.value.length < 8 || pass.value === ""){
             warnings += "La contraseña no es válida<br>"
             entrar = true
@@ -50,12 +49,12 @@ form.addEventListener('submit', e=>{
                         warnings += "Seleccione una Provincia<br>"
                         entrar = true
                         console.log("debe seleccionar una provincia");
-                    } else {
+                    } else { 
                         if(cp.value.length < 4 || cp.value === ""){
                             warnings += "Código postal debe tener al menos 4 caracteres<br>"
                             entrar = true
                             console.log("cp INVALIDO");
-                        } else {
+                        } else { 
                             if(!acepto.checked){
                                 warnings += "Acepte términos y condiciones para continuar<br>"
                                 entrar = true
@@ -69,8 +68,8 @@ form.addEventListener('submit', e=>{
             }
         }
     }
-
-    if(entrar){
+    
+    if(entrar){            
         document.getElementById("advertencia").innerHTML = warnings;
         console.log("no enviado, error en datos : "+warnings);
     }else{
@@ -82,16 +81,8 @@ form.addEventListener('submit', e=>{
         provincia.value = "Seleccione..";
         cp.value = "";
         acepto.checked = "false";
-        warnings.innerHTML = "";
+        warnings.innerHTML = "";        
         window.alert("Datos Cargados Correctamente!");
 
     }
 })
-
-*/
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}

@@ -1,29 +1,38 @@
 <!-- Formulario de Login-->
-
-<div class="imagen_cabecera container-fluid px-4 py-5">
-  <div class="row">
-    <div class="col">
-      <form action="" metod="POST" id="form">
-        <div class="col-md-3">
-          <label for="Email" class="form-label text-light">Email: </label>
-          <input type="email" class="form-control" id="email">
-          <!--<div class="valid-feedback"> Datos Ok</div> needs-validation" novalidate
-                    <div class="invalid-feedback">Datos incorrectos</div>-->
-          <div class="col-md-12">
-            <label for="Password" class="form-label text-light">Password: </label>
-            <input type="password" class="form-control" id="password">
-            <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="CheckIniciada">
-              <label class="form-check-label text-light" for="CheckIniciada">Mantener Iniciada mi
-                Sesion</label>
-            </div>
-            <a routerLink="/dashboard" class="btn btn-primary">Ingresar</a>
-            <p class="warnings" id="warning"></p>
+<section class="background-login">
+  <div class="container-fluid" style="padding: 10px;">
+      <div class="d-flex justify-content-end">
+          <div class="card" style="width: 17rem; padding: 2px; background-color: rgb(172, 142, 87);">
+              <img src="assets/images/user_cripto(2).png" class="card-img-top display-block" height="20%"
+                  alt="user">
+              <div class="card-body bg-dark">
+                  <h5 class="card-text text-light">iniciar Sesión:</h5>
+                  <form action="" class="formulario row g-2 bg-dark" metod="POST" id="form_login">
+                      <div class="col-md-12">
+                          <label for="Email" class="form-label text-light">Email: </label>
+                          <input type="email" class="form-control" id="email">
+                      </div>
+                      <div class="col-md-12">
+                          <label for="Password" class="form-label text-light">Password: </label>
+                          <input type="password" class="form-control" id="password">
+                      </div>
+                      <div class="col-12">
+                         <div class="form-check">
+                             <input class="form-check-input" type="checkbox" id="cb_iniciada">
+                             <label class="form-check-label text-light" for="cb_iniciada">Mantener
+                              Iniciada
+                              mi
+                              Sesión
+                             </label>
+                         </div>
+                      </div>
+                      <button type="submit" id="ingresar" class="btn btn-primary">Ingresar
+                      </button>
+                      <p id="advertencia" style="color: rgb(249, 254, 255); padding-top: 1em;  "></p>
+                  </form>
+                  <script src="assets/js/login.js"></script>
+              </div>
           </div>
-        </div>
-      </form>
-    </div>
+      </div>
   </div>
-
-</div>
-<script src="assets/js/login.js"></script>
+</section>

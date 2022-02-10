@@ -12,8 +12,7 @@ import { NgChartsModule } from 'ng2-charts';
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
+  imports: [BrowserModule,
     AppRoutingModule,
     LayoutModule,
     PagesModule,
