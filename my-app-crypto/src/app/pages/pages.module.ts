@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { NgChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from '../app-routing.module';
+import { FondeoCajaComponent } from './fondeoCaja/fondeoCaja.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AppRoutingModule } from '../app-routing.module';
     HomeComponent,
     DashboardComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    FondeoCajaComponent
   ],
   imports: [
     CommonModule,
