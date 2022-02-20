@@ -6,17 +6,19 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { PagesModule } from './pages/pages.module';
 import { NgChartsModule } from 'ng2-charts';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [BrowserModule,
+  imports: [
+    BrowserModule,
     AppRoutingModule,
     LayoutModule,
     PagesModule,
-    NgChartsModule
+    NgChartsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

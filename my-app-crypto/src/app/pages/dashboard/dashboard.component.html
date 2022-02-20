@@ -1,30 +1,31 @@
 <!--Contenido Dashboard-->
-<!--Contenido Tarjetas Arriba-->
 <main class="dashboard">
-  <div class="container pt-4">
-    <div class="row">
-      <div class="col-xl-6 col-sm-12 mb-xl-0 mb-4">
+  <div class="container py-3">
+    <!--Tarjetas Arriba-->
+    <div class="row g-3" data-masonry='{"percentPosition": true }'>
+      <!--Mi Billetera-->
+      <div class="col-xl-6 col-sm-12">
         <div class="card shadow-sm">
           <div class="card-header p-3">
-            <i class="bi bi-wallet2"></i> Mi Cuenta
+            <i class="fa-solid fa-wallet"></i> Mi Cuenta
           </div>
           <div class="card-body">
-
             <div class="row">
-              <div class="col-xl-6 col-sm-12 mb-xl-0 mb-4">
-                <h4 class="card-title"><i class="bi bi-coin"></i> Pesos Argentinos</h4>
+              <div class="col-xl-6 col-sm-12 pt-3">
+                <h4 class="card-title"><i class="fa-solid fa-money-bill-1"></i> Pesos Argentinos</h4>
                 <h2>85500</h2>
 
                 <div class="d-flex  justify-content-center">
                   <div class="px-3 py-2">
-                    <a href="#" class="btn btn-outline-secondary btn-sm">Ingresar $</a>
+                    <a href="#" class="btn btn-outline-secondary btn-sm">Ingresar $AR</a>
                   </div>
                   <div class="px-3 py-2">
-                    <a href="#" class="btn btn-outline-secondary btn-sm">Retirar $</a>
+                    <a href="#" class="btn btn-outline-secondary btn-sm">Retirar $AR</a>
                   </div>
                 </div>
               </div>
-              <div class="col-xl-6 col-sm-12 mb-xl-0 mb-4">
+
+              <div class="col-xl-6 col-sm-12">
                 <table class="table table-hover">
                   <thead>
                     <tr>
@@ -34,11 +35,11 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Bitcoin</td>
+                      <td><img src="assets/images/btc.png" class="iconito" alt=""> Bitcoin</td>
                       <td>0.00322179</td>
                     </tr>
                     <tr>
-                      <td>Ethereum</td>
+                      <td><img src="assets/images/eth.png" class="iconito" alt=""> Ethereum</td>
                       <td>0.02166552</td>
                     </tr>
                   </tbody>
@@ -46,65 +47,26 @@
               </div>
 
             </div>
-
+            <div class="d-flex  justify-content-center">
+               <div class="px-3 py-2">
+                <a href="#" class="btn btn-outline-secondary btn-sm">COMPRAR - VENDER - TRANSFERIR Cryptomonedas</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-        <div class="card shadow-sm">
-          <div class="card-header p-3">
-            <img src="assets/images/btc.png" alt=""> Balance Bitcoin
-          </div>
-          <div class="card-body">
-            <canvas baseChart 
-            [data]="lineChartData"
-            [options]="lineChartOptions"
-            [type]="lineChartType">
-            </canvas>
-            <select class="form-select mt-2">
-              <option>5 Días</option>
-              <option>Mes</option>
-              <option>Año</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-        <div class="card shadow-sm">
-          <div class="card-header p-3">
-            <img src="assets/images/eth.png" alt=""> Balance Ethereum
-          </div>
-          <div class="card-body">
-            <canvas baseChart 
-            [data]="lineChartData2"
-            [options]="lineChartOptions2"
-            [type]="lineChartType2">
-            </canvas>
-            <select class="form-select mt-2">
-              <option>5 Días</option>
-              <option>Mes</option>
-              <option>Año</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-  <!--FIn Contenido Tarjetas Arriba-->
 
-
-  <!--Contenido Tarjetas Abajo-->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4 col-md-6 mt-4 mb-4">
+      <!--Fin Mi Billetera-->
+      <!--Mis Últimas Operaciones-->
+      <div class="col-xl-6 col-sm-12">
         <div class="card shadow-sm">
-          <div class="card-header p-3">
+          <div class="card-header p-3"><i class="fa-solid fa-list"></i>
             Mis Últimas Operaciones
           </div>
           <div class="card-body">
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
                   <th scope="col">Operación</th>
                   <th scope="col">Crypto</th>
                   <th scope="col">Monto</th>
@@ -112,19 +74,16 @@
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
                   <td>Compra</td>
                   <td>Bitcoin</td>
                   <td>0.00112179</td>
                 </tr>
                 <tr>
-                  <th scope="row">2</th>
                   <td>Venta</td>
                   <td>Ethereum</td>
                   <td>0.01466552</td>
                 </tr>
                 <tr>
-                  <th scope="row">3</th>
                   <td colspan="2">Carga Billetera</td>
                   <td>$30000</td>
                 </tr>
@@ -134,57 +93,105 @@
         </div>
 
       </div>
+      <!--Fin Mis Últimas Operaciones-->
 
+    
+  
+  <!--Fin Tarjetas Arriba-->
+  <!--Tarjetas Abajo-->
 
-      <div class="col-lg-8 col-md-6 mt-4 mb-4">
+      <!--Cotizaciones-->
+      <div class="col-xl-6 col-sm-12">
         <div class="card shadow-sm">
           <div class="card-header p-3">
-            <i class="bi bi-graph-up-arrow"></i> Cotizaciones
+             <h5><i class="fa-solid fa-chart-line"></i>Cotizaciones</h5>
+            <p><small>Cotización en base al Dolar con impuesto PAIS + Imp. GANANCIAS.<br>
+              <strong>PRECIO:</strong> {{dolaroficial| currency}}</small></p>
           </div>
           <div class="card-body">
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
                   <th scope="col">Crypto</th>
                   <th scope="col">Cotización</th>
-                  <th scope="col">Balance</th>
-                  <th scope="col"></th>
+                  <th scope="col">Balance (24 hs.)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
                   <td><img src="assets/images/btc.png" class="iconito" alt=""> Bitcoin</td>
-                  <td>44678598.26</td>
-                  <td>+0.25</td>
-                  <td><button type="button" class="btn btn-light btn-sm">Comprar</button></td>
+                  <td>{{datachartbtc[datachartbtc.length-1] | currency:'ARS':'symbol-narrow'}}</td>
+                  <td>
+                    {{(datachartbtc[datachartbtc.length-1]-datachartbtc[datachartbtc.length-2])/datachartbtc[datachartbtc.length-1]| percent:'.2'}}
+                  </td>
                 </tr>
                 <tr>
-                  <th scope="row">2</th>
                   <td><img src="assets/images/eth.png" class="iconito" alt=""> Ethereum</td>
-                  <td>684310.56</td>
-                  <td>-2.58</td>
-                  <td><button type="button" class="btn btn-light btn-sm">Comprar</button></td>
+                  <td>{{datacharteth[datacharteth.length-1]| currency:'ARS':'symbol-narrow'}}</td>
+                  <td>
+                    {{(datacharteth[datacharteth.length-1]-datacharteth[datacharteth.length-2])/datacharteth[datacharteth.length-1]| percent:'.2'}}
+                  </td>
                 </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td><img src="assets/images/bnb.png" class="iconito" alt=""> Binance Coin</td>
-                  <td>49128.64</td>
-                  <td>+2.63</td>
-                  <td><button type="button" class="btn btn-light btn-sm">Comprar</button></td>
-                </tr>
+                <!-- <tr>
+                <th scope="row">3</th>
+                <td><img src="assets/images/bnb.png" class="iconito" alt=""> Binance Coin</td>
+                <td>49128.64</td>
+                <td>+2.63</td>
+                <td><button type="button" class="btn btn-light btn-sm">Comprar</button></td>
+                </tr> -->
               </tbody>
             </table>
           </div>
         </div>
-
       </div>
+      <!-- Fin Cotizaciones-->
+      <!--Chart Cryptos-->
 
-    </div>
-  </div>
+      <div class="col-xl-3 col-sm-6">
+        <div class="card shadow-sm">
+          <div class="card-header p-3">
+            <img src="assets/images/btc.png" alt=""> Balance Bitcoin (7 Días)
+          </div>
+          <div class="card-body">
+            <canvas id="canvas-btc">"{{chartbtc}}"</canvas>
+            <div class="d-flex  justify-content-center">
+              <div class="pt-3">
+                <a href="#" class="btn btn-outline-secondary btn-sm">COMPRAR</a>
+              </div>
+            </div>
+            <!-- <select class="form-select mt-2">
+            <option>5 Días</option>
+            <option>Mes</option>
+            <option>Año</option>
+            </select> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-sm-6">
+        <div class="card shadow-sm">
+          <div class="card-header p-3">
+            <img src="assets/images/eth.png" alt=""> Balance Ethereum (7 Días)
+          </div>
+          <div class="card-body">
+            <canvas id="canvas-eth">{{charteth}}</canvas>
+            <div class="d-flex  justify-content-center">
+              <div class="pt-3">
+                <a href="#" class="btn btn-outline-secondary btn-sm">COMPRAR</a>
+              </div>
+            </div>
+            <!-- <select class="form-select mt-2">
+            <option>5 Días</option>
+            <option>Mes</option>
+            <option>Año</option>
+            </select> -->
+          </div>
+        </div>
+      </div>
+      <!--Fin Chart Crypto-->
+ 
   <!--Contenido Fin Tarjetas Abajo-->
-  </div>
+</div>
+</div>
 </main>
 
 <!--Fin Contenido Dashboard-->
