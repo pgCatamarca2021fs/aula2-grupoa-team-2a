@@ -6,6 +6,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { FondeoCajaComponent } from './pages/fondeoCaja/fondeoCaja.component';
+import { ConvierteComponent } from './pages/convierte/convierte.component';
+
 
 const routes: Routes = [{path: 'home' , component: HomeComponent},
 {path: 'dashboard' , component: DashboardComponent},
@@ -13,6 +15,8 @@ const routes: Routes = [{path: 'home' , component: HomeComponent},
 {path: 'registro' , component: RegistroComponent},
 {path: '' , redirectTo: '/home', pathMatch: 'full'},
 {path: 'fondeo' , component:FondeoCajaComponent},
+{path: 'convertir' , component:ConvierteComponent}
+
 ];
 
 @NgModule({

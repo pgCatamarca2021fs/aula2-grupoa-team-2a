@@ -7,6 +7,10 @@ import { LayoutModule } from './layout/layout.module';
 import { PagesModule } from './pages/pages.module';
 import { NgChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+
+
 
 @NgModule({
   declarations: [
@@ -14,11 +18,14 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     LayoutModule,
     PagesModule,
     NgChartsModule,
     HttpClientModule
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
