@@ -13,6 +13,11 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
+  /*Login/Registro */
+.fondo_login_registro{
+  background: url('assets/images/blockchain.jpg');
+  background-size: cover;
+  min-height: 200px;
+}
 
 
-  
