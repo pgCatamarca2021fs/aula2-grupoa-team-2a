@@ -1,38 +1,58 @@
 <!-- Formulario de Login-->
-<section class="background-login">
+<section class="fondo_login_registro">
   <div class="container-fluid" style="padding: 10px;">
-      <div class="d-flex justify-content-end">
-          <div class="card" style="width: 17rem; padding: 2px; background-color: rgb(172, 142, 87);">
-              <img src="assets/images/user_cripto(2).png" class="card-img-top display-block" height="20%"
-                  alt="user">
-              <div class="card-body bg-dark">
-                  <h5 class="card-text text-light">iniciar Sesión:</h5>
-                  <form action="" class="formulario row g-2 bg-dark" metod="POST" id="form_login">
-                      <div class="col-md-12">
-                          <label for="Email" class="form-label text-light">Email: </label>
-                          <input type="email" class="form-control" id="email">
-                      </div>
-                      <div class="col-md-12">
-                          <label for="Password" class="form-label text-light">Password: </label>
-                          <input type="password" class="form-control" id="password">
-                      </div>
-                      <div class="col-12">
-                         <div class="form-check">
-                             <input class="form-check-input" type="checkbox" id="cb_iniciada">
-                             <label class="form-check-label text-light" for="cb_iniciada">Mantener
-                              Iniciada
-                              mi
-                              Sesión
-                             </label>
-                         </div>
-                      </div>
-                      <button type="submit" id="ingresar" class="btn btn-primary">Ingresar
-                      </button>
-                      <p id="advertencia" style="color: rgb(249, 254, 255); padding-top: 1em;  "></p>
-                  </form>
-                  <script src="assets/js/login.js"></script>
+    <div class="d-flex justify-content-end">
+      <div class="card" style="width: 17rem; padding: 2px; background-color: rgb(172, 142, 87);">
+        <img src="/my-app-crypto/src/assets/images/user_cripto(2).png" class="card-img-top display-block" height="20%"
+          alt="user">
+        <div class="card-body bg-dark">
+          <h5 class="card-text text-light">iniciar Sesión:</h5>
+          <form [formGroup]="form" action="" class="formulario row g-2 bg-dark" metod="POST" id="form_login">
+            <div class="col-md-12">
+              <label for="Email" class="form-label text-light">Email: </label>
+              <input type="email" formControlName="mail" class="form-control" [class.border-danger]="MailValid"
+                id="email">
+              <!--Respuesta en pantalla-->
+              <div *ngIf="Mail?.errors || Mail?.touched">
+                <p *ngIf="Mail?.hasError('required')" class="text-danger">
+                  Ingrese su email.
+                </p>
+                <p *ngIf="Mail?.hasError('email')" class="text-danger">
+                  El formato del email debe ser válido, ej:"mail@mail.com".
+                </p>
               </div>
-          </div>
+            </div>
+            <div class="col-md-12">
+              <label for="Password" class="form-label text-light">Password: </label>
+              <input type="password" formControlName="password" [class.border-danger]="PasswordValid"
+                class="form-control" id="password">
+              <!--Respuesta en pantalla-->
+              <div *ngIf="Password?.errors || Password?.touched">
+                <p *ngIf="Password?.hasError('required')" class="text-danger">
+                  Password no fué ingresado.
+                </p>
+                <p *ngIf="Password?.hasError('password')" class="text-danger">
+                  Contraseña debe contener al menos 8 caracteres.
+                </p>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="cb_iniciada">
+                <label class="form-check-label text-light" for="cb_iniciada">Mantener
+                  Iniciada
+                  mi
+                  Sesión
+                </label>
+              </div>
+            </div>
+            <div class="col-12">
+              <button routerLink="/dashboard" type="submit" id="ingresar" class="btn btn-primary">Ingresar</button>
+            </div>
+          </form>
+        </div>
       </div>
+    </div>
   </div>
 </section>
+

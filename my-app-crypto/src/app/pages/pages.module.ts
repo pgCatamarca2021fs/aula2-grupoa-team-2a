@@ -6,7 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { NgChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from '../app-routing.module';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { AppComponent } from '../app.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,15 @@ import { AppRoutingModule } from '../app-routing.module';
   imports: [
     CommonModule,
     NgChartsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
-  exports: [HomeComponent, DashboardComponent, LoginComponent, RegistroComponent]
+
+  providers: [],
+
+  bootstrap: [AppComponent],
+
+  exports: [HomeComponent, DashboardComponent, LoginComponent, RegistroComponent],
+
 })
 export class PagesModule { }

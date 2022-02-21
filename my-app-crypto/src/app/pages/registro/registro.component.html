@@ -1,86 +1,205 @@
 <!-- Formulario Registro-->
-<section class="background-login">
-  <div class="d-flex justify-content-center" style="padding: 10px;">
-      <div class="card" style="width: 40rem; padding: 2px; background-color: rgb(172, 142, 87);">
-          <div class="card-body bg-dark">
-              <h3 class="card-text text-light">Registro</h3>
-              <form action="" class="formulario row g-2 bg-dark" metod="POST" id="form_registro">
-                  <div class="col-md-6">
-                      <label for="ingresarEmail" class="form-label text-light">Email: </label>
-                      <input type="email" class="form-control" id="email">
-                  </div>
-                  <div class="col-md-6">
-                      <label for="IngresarPassword" class="form-label text-light">Password:</label>
-                      <input type="password" class="form-control" id="password">
-                  </div>
-                  <div class="col-md-6">
-                      <label for="IngresarDireccion" class="form-label text-light">Dirección:
-                      </label>
-                      <input type="text" class="form-control" id="direccion" placeholder="Republica 1034">
-                  </div>
-                  <div class="col-md-6">
-                      <label for="IngresarDire2" class="form-label text-light">Manzana/Lote - Dpto. - Piso</label>
-                      <input type="text" class="form-control" id="mna_dpto_piso"
-                          placeholder="Manzana, Departamento, Piso">
-                  </div>
-                  <div class="col-md-6">
-                      <label for="IngresarCiudad" class="form-label text-light">Ciudad: </label>
-                      <input type="text" class="form-control" id="ciudad">
-                  </div>
-                  <!--Desplegable de Provincias-->
-                  <div class="col-md-4">
-                      <label for="IngresarProvincia" class="form-label text-light">Provincia:
-                      </label>
-                      <select id="provincia" class="form-select">
-                          <option selected disabled value="">Seleccione..</option>
-                          <option>Buenos Aires</option>
-                          <option>Capital Federal</option>
-                          <option>Catamarca</option>
-                          <option>Chaco</option>
-                          <option>Chubut</option>
-                          <option>Córdoba</option>
-                          <option>Corrientes</option>
-                          <option>Entre Ríos</option>
-                          <option>Formosa</option>
-                          <option>Jujuy</option>
-                          <option>La Pampa</option>
-                          <option>La Rioja</option>
-                          <option>Mendoza</option>
-                          <option>Misiones</option>
-                          <option>Neuquén</option>
-                          <option>Rio Negro</option>
-                          <option>Salta</option>
-                          <option>San Juan</option>
-                          <option>San Luís</option>
-                          <option>Santa Cruz</option>
-                          <option>Santa Fe</option>
-                          <option>Santiago del Estero</option>
-                          <option>Tierra del Fuego</option>
-                          <option>Tucumán</option>
-                      </select>
-                  </div>
-                  <div class="col-md-2">
-                      <label for="IngresarPostal" class="form-label text-light">CP:
-                      </label>
-                      <input type="text" class="form-control" id="cp">
-                  </div>
-                  <div class="col-12">
-                      <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="acepto">
-                          <label class="form-check-label text-light" for="acepto">
-                              Acepto los términos y Condiciones
-                          </label>
-                      </div>
-                  </div>
-                  <div class="col-12">
-                      <br>
-                      <button type="submit" class="btn btn-primary">Registrarse</button>
-                      <p id="advertencia" style="color: rgb(249, 254, 255); padding-top: 1em;  "></p>
-                  </div>
-              </form>
+<section class="fondo_login_registro">
+  <div class="d-flex justify-content-end" style="padding: 10px;">
+    <div class="card" style="width: 45rem; padding: 2px; background-color: rgb(172, 142, 87);">
+      <div class="card-body bg-dark">
+        <h3 class="card-text text-light">Registro</h3>
+        <form [formGroup]="form" action="" class="formulario row g-2 bg-dark" metod="POST" id="form_registro">
+         <!--Primera Linea-->
+          <div class="col-sm-4">
+            <label for="Ingemail" class="form-label text-light">Email: </label>
+            <input formControlName="mail" class="form-control is-valid" [class.border-danger]="MailValid" type="email"
+              class="form-control" id="email" required>
+            <!--Respuesta en campo-->
+            <div *ngIf="Mail?.errors && Mail?.touched">
+              <p *ngIf="Mail?.hasError('required')" class="text-danger">
+                Ingrese su email.
+              </p>
+              <p *ngIf="Mail?.hasError('pattern')" class="text-danger">
+                Formato admitido: "mail@mail.com".
+              </p>
+            </div>
           </div>
-          <script src="assets/js/registro.js"></script>
+          <div class="col-sm-4">
+            <label for="IngresarPassword" class="form-label text-light">Password:</label>
+            <input type="password" formControlName="password" [class.border-danger]="PasswordValid" class="form-control"
+              id="password" required>
+            <!--Respuesta en campo-->
+            <div *ngIf="Password?.errors && Password?.touched">
+              <p *ngIf="Password?.hasError('required')" class="text-danger">
+                Password no fué ingresado.
+              </p>
+              <p *ngIf="Password?.hasError('pattern')" class="text-danger">
+                Debe contener al menos 8 caracteres (max20).
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <label for="IngresarCUIL" class="form-label text-light">Nº Cuil:</label>
+            <input formControlName="cuil" class="form-control" type="email" [class.border-danger]="CuilValid"
+              class="form-control" id="ncuil" required>
+            <!--Respuesta en campo-->
+            <div *ngIf="Cuil?.errors && Cuil?.touched">
+              <p *ngIf="Cuil?.hasError('required')" class="text-danger">
+                Ingrese su CUIL.
+              </p>
+              <p *ngIf="Cuil?.hasError('pattern')" class="text-danger">
+                Solo 11 números, sin guiones ni puntos.
+              </p>
+            </div>
+          </div>
+          <!--Segunda Linea-->
+          <div class="col-sm-6">
+            <label for="ingresarNombre" class="form-label text-light">Apellido y Nombre: </label>
+            <input formControlName="nombre" class="form-control" type="text" [class.border-danger]="NombreValid" class="form-control" id="nombreº" required>
+            <!--Respuesta en pantalla-->
+            <div *ngIf="Nombre?.errors && Nombre?.touched">
+              <p *ngIf="Nombre?.hasError('required')" class="text-danger">
+                Ingrese su Apellido y Nombre.
+              </p>
+              <p *ngIf="Nombre?.hasError('pattern')" class="text-danger">
+                Debe contener al menos 10 caracteres.
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <label for="IngresarFecNac" class="form-label text-light">Fecha Nacimiento:</label>
+            <input type="fecnac" formControlName="fecnac" [class.border-danger]="FecnacValid" class="form-control" id="fecnac" required>
+            <!--Respuesta en pantalla -->
+            <div *ngIf="FecNac?.errors && FecNac?.touched ">
+              <p *ngIf="FecNac?.hasError('required')" class="text-danger">
+                Fecha de Nacimiento Requerida.
+              </p>
+              <p *ngIf="FecNac?.hasError('pattern')" class="text-danger">
+                Formato admitido: dd-mm-aaaa.
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <label for="Ingresartelefono" class="form-label text-light">Teléfono:</label>
+            <input formControlName="telefono" class="form-control" type="text" [class.border-danger]="TelefonoValid" class="form-control" id="email" required>
+            <!--Respuesta en pantalla-->
+            <div *ngIf="Telefono?.errors && Telefono?.touched">
+              <p *ngIf="Telefono?.hasError('required')" class="text-danger">
+                Ingrese Teléfono.
+              </p>
+              <p *ngIf="Telefono?.hasError('pattern')" class="text-danger">
+                Debe contener 11 dìgitos sin el 0 ni el 15.
+              </p>
+            </div>
+          </div>
+          <!--TerceraLinea-->
+          <div class="col-sm-4">
+            <label for="Ingresardomicilio" class="form-label text-light">Domicilio:</label>
+            <input formControlName="domicilio" class="form-control" type="text" [class.border-danger]="DomicilioValid" class="form-control" id="domicilio" required>
+            <!--Respuesta en campo-->
+            <div *ngIf="Domicilio?.errors && Domicilio?.touched">
+              <p *ngIf="Domicilio?.hasError('required')" class="text-danger">
+                Ingrese Domicilio.
+              </p>
+              <p *ngIf="Domicilio?.hasError('pattern')" class="text-danger">
+                Debe contener al menos 10 caracteres.
+              </p>
+            </div>
+          </div>
+         <div class="col-sm-3">
+            <label for="IngresarDire2" class="form-label text-light">Mna/Lote/Dpto/Piso</label>
+            <input type="text" class="form-control" id="direccion2" placeholder="Opcional">
+         </div>
+        <div class="col-sm-3">
+            <label for="Ingresarcp" class="form-label text-light">CP:</label>
+            <input formControlName="cp" class="form-control" type="text" [class.border-danger]="CpValid" class="form-control" id="cp" required>
+            <!--Respuesta en campo-->
+            <div *ngIf="Cp?.errors && Cp?.touched">
+              <p *ngIf="Cp?.hasError('required')" class="text-danger">
+                Ingrese CP.
+              </p>
+              <p *ngIf="Cp?.hasError('pattern')" class="text-danger">
+                Solo números (max 5).
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <label for="IngresarCiudad" class="form-label text-light">Ciudad:</label>
+            <input formControlName="ciudad" class="form-control" type="text" [class.border-danger]="CiudadValid" class="form-control" id="ciudad" required>
+            <!--Respuesta en campo-->
+            <div *ngIf="Ciudad?.errors && Ciudad?.touched">
+              <p *ngIf="Ciudad?.hasError('required')" class="text-danger">
+                Ingrese Ciudad.
+              </p>
+              <p *ngIf="Ciudad?.hasError('pattern')" class="text-danger">
+                Debe contener al menos 4 caracteres.
+              </p>
+            </div>
+          </div>
+          <!--Cuarta Línea-->
+          <!--Desplegable de Provincias-->
+          <div class="col-sm-5">
+            <label for="IngresarProvincia" class="form-label text-light">Provincia:
+            </label>
+            <select id="provincia" class="form-select">
+              <option selected disabled value="">Seleccione..</option>
+              <option>Buenos Aires</option>
+              <option>Capital Federal</option>
+              <option>Catamarca</option>
+              <option>Chaco</option>
+              <option>Chubut</option>
+              <option>Córdoba</option>
+              <option>Corrientes</option>
+              <option>Entre Ríos</option>
+              <option>Formosa</option>
+              <option>Jujuy</option>
+              <option>La Pampa</option>
+              <option>La Rioja</option>
+              <option>Mendoza</option>
+              <option>Misiones</option>
+              <option>Neuquén</option>
+              <option>Rio Negro</option>
+              <option>Salta</option>
+              <option>San Juan</option>
+              <option>San Luís</option>
+              <option>Santa Cruz</option>
+              <option>Santa Fe</option>
+              <option>Santiago del Estero</option>
+              <option>Tierra del Fuego</option>
+              <option>Tucumán</option>
+            </select>
+            <!--Respuesta en campo-->
+            <div *ngIf="Provincia?.errors && Provincia?.touched">
+              <p *ngIf="Provincia?.hasError('required')" class="text-danger">
+                Seleccione Provincia.
+              </p>
+              <p *ngIf="Provincia?.value == ('Seleccione..')"  class="text-danger">
+                Debe Seleccionar una Provincia.
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <label for="lpaís" class="form-label text-light">País</label>
+            <input type="text" class="form-control" id="pais" Value="Argentina" readonly>
+         </div>
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="acepto">
+              <a href="#" class="form-check-label text-light" for="acepto">Acepto los términos y Condiciones
+              </a>
+              <div *ngIf="Acepto?.errors && Acepto?.touched">
+                <p *ngIf="Acepto?.value == false"  class="text-danger">
+                  Debe aceptar términos y condiciones.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <br>
+            <button routerLink="/login" type="submit" class="btn btn-primary">Registrarse</button>
+            <div *ngIf="Acepto?.errors && Acepto?.touched" class="alert alert-success" role="alert">
+              Datos Guardados Correctamente!
+            </div>
+          </div>
+        </form>
       </div>
+    </div>
   </div>
 
 </section>
