@@ -1,4 +1,5 @@
 <!-- Formulario Registro-->
+<<<<<<< HEAD
 <section class="fondo_login_registro">
   <div class="d-flex justify-content-end" style="padding: 10px;">
     <div class="card" style="width: 45rem; padding: 2px; background-color: rgb(172, 142, 87);">
@@ -19,6 +20,87 @@
                 Formato admitido: "mail@mail.com".
               </p>
             </div>
+=======
+<section class="background-registro">
+  <div class="d-flex justify-content-center" style="padding: 10px;">
+      <div class="card" style="width: 40rem; padding: 2px; background-color: rgb(172, 142, 87);">
+          <div class="card-body bg-dark">
+              <h3 class="card-text text-light">Registro</h3>
+              <form action="" class="formulario row g-2 bg-dark" metod="POST" id="form_registro">
+                  <div class="col-md-6">
+                      <label for="ingresarEmail" class="form-label text-light">Email: </label>
+                      <input type="email" class="form-control" id="email">
+                  </div>
+                  <div class="col-md-6">
+                      <label for="IngresarPassword" class="form-label text-light">Password:</label>
+                      <input type="password" class="form-control" id="password">
+                  </div>
+                  <div class="col-md-6">
+                      <label for="IngresarDireccion" class="form-label text-light">Dirección:
+                      </label>
+                      <input type="text" class="form-control" id="direccion" placeholder="Republica 1034">
+                  </div>
+                  <div class="col-md-6">
+                      <label for="IngresarDire2" class="form-label text-light">Manzana/Lote - Dpto. - Piso</label>
+                      <input type="text" class="form-control" id="mna_dpto_piso"
+                          placeholder="Manzana, Departamento, Piso">
+                  </div>
+                  <div class="col-md-6">
+                      <label for="IngresarCiudad" class="form-label text-light">Ciudad: </label>
+                      <input type="text" class="form-control" id="ciudad">
+                  </div>
+                  <!--Desplegable de Provincias-->
+                  <div class="col-md-4">
+                      <label for="IngresarProvincia" class="form-label text-light">Provincia:
+                      </label>
+                      <select id="provincia" class="form-select">
+                          <option selected disabled value="">Seleccione..</option>
+                          <option>Buenos Aires</option>
+                          <option>Capital Federal</option>
+                          <option>Catamarca</option>
+                          <option>Chaco</option>
+                          <option>Chubut</option>
+                          <option>Córdoba</option>
+                          <option>Corrientes</option>
+                          <option>Entre Ríos</option>
+                          <option>Formosa</option>
+                          <option>Jujuy</option>
+                          <option>La Pampa</option>
+                          <option>La Rioja</option>
+                          <option>Mendoza</option>
+                          <option>Misiones</option>
+                          <option>Neuquén</option>
+                          <option>Rio Negro</option>
+                          <option>Salta</option>
+                          <option>San Juan</option>
+                          <option>San Luís</option>
+                          <option>Santa Cruz</option>
+                          <option>Santa Fe</option>
+                          <option>Santiago del Estero</option>
+                          <option>Tierra del Fuego</option>
+                          <option>Tucumán</option>
+                      </select>
+                  </div>
+                  <div class="col-md-2">
+                      <label for="IngresarPostal" class="form-label text-light">CP:
+                      </label>
+                      <input type="text" class="form-control" id="cp">
+                  </div>
+                  <div class="col-12">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="acepto">
+                          <label class="form-check-label text-light" for="acepto">
+                              Acepto los términos y Condiciones
+                          </label>
+                      </div>
+                  </div>
+                  <div class="col-12">
+                      <br>
+                      <button type="submit" class="btn btn-primary">Registrarse</button>
+                      <p id="advertencia" style="color: rgb(249, 254, 255); padding-top: 1em;  "></p>
+                  </div>
+              </form>
+>>>>>>> ce4ffb0fc2919cd7158fc1aa651010e488dc92c1
           </div>
           <div class="col-sm-4">
             <label for="IngresarPassword" class="form-label text-light">Password:</label>

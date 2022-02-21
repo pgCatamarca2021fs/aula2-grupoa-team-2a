@@ -8,13 +8,16 @@ import { NgChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from '../app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
+import { FondeoCajaComponent } from './fondeoCaja/fondeoCaja.component';
+
 
 @NgModule({
   declarations: [
     HomeComponent,
     DashboardComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    FondeoCajaComponent
   ],
   imports: [
     CommonModule,
