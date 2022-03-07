@@ -11,9 +11,9 @@
               
                       <label for="criptosel">Seleccione la Moneda Origen</label>
                       
-                        <select  class="form-select" ([ngModel])="opcionSeleccionado" (change)="capturar()" >
-                        <option value="0">Selecciona una opción</option>
-                            <option *ngFor="let dato of listaCripto " >
+                     
+                        <select  class="form-select"   name="status" placeholder="select" (ngModelChange)="ngOnInit()" >
+                            <option  *ngfor="let dato of criptos" [value]="dato.symbol" >
                               {{dato.symbol}}
                             </option>
                       </select>  

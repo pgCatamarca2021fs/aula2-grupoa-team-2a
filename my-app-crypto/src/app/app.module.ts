@@ -8,6 +8,7 @@ import { PagesModule } from './pages/pages.module';
 import { NgChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     LayoutModule,
     PagesModule,
     NgChartsModule,
+    CommonModule,
     HttpClientModule
     
     
