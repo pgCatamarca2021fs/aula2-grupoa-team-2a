@@ -14,20 +14,20 @@ import { ApiService } from 'src/app/services/api.service';
 
 
 export class ConvierteComponent implements OnInit {
-  
-  
- criptos:any;
-  
+
+
+ criptos:any = [];
+
   constructor(private Apiservice:ApiService) { }
 
   ngOnInit() {
-    
-        this.Apiservice.obtenerCripto().subscribe(respuesta => {this.criptos=respuesta; console.log(respuesta); });
-        
-    
+
+        this.Apiservice.obtenerCripto().subscribe(respuesta => {this.criptos=respuesta; console.log(this.criptos); });
+
+
 
   }
 
-   
+
 
 }

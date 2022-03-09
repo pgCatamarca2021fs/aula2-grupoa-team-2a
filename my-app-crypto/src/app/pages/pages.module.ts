@@ -9,6 +9,8 @@ import { AppRoutingModule } from '../app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { FondeoCajaComponent } from './fondeoCaja/fondeoCaja.component';
+import { ConvierteComponent } from './convierte/convierte.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -17,20 +19,22 @@ import { FondeoCajaComponent } from './fondeoCaja/fondeoCaja.component';
     DashboardComponent,
     LoginComponent,
     RegistroComponent,
+    ConvierteComponent,
     FondeoCajaComponent
   ],
   imports: [
     CommonModule,
     NgChartsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserModule
   ],
 
   providers: [],
 
   bootstrap: [AppComponent],
 
-  exports: [HomeComponent, DashboardComponent, LoginComponent, RegistroComponent],
+  exports: [HomeComponent, DashboardComponent, LoginComponent, RegistroComponent,ConvierteComponent],
 
 })
 export class PagesModule { }

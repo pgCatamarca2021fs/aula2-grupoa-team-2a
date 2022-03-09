@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -26,8 +28,8 @@ import { CommonModule } from '@angular/common';
     NgChartsModule,
     CommonModule,
     HttpClientModule
-    
-    
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
