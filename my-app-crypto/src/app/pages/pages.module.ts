@@ -6,11 +6,12 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { NgChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from '../app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { FondeoCajaComponent } from './fondeoCaja/fondeoCaja.component';
 import { ConvierteComponent } from './convierte/convierte.component';
 import { BrowserModule } from '@angular/platform-browser';
+
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { BrowserModule } from '@angular/platform-browser';
     NgChartsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
 
   providers: [],
