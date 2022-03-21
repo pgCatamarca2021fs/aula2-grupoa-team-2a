@@ -1,0 +1,12 @@
+.fondo_card_registro {
+  width: 48rem;
+  padding: 3px;
+  background: #f09819; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #f09819, #edde5d); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #f09819, #edde5d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.estilo_titulo{
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20pt;
+}
