@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PersonaService } from 'src/app/services/persona.service';
+import { Router } from '@angular/router';
+import { UsuarioModel } from 'src/app/models';
 
 
 @Component({

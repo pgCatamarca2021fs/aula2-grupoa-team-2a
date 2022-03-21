@@ -1,0 +1,17 @@
+
+.circulo_profile {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: #355883;
+  text-align: center;
+  margin: 10px;
+  display:inline-block;
+}
+
+.iniciales {
+  line-height: 1;
+  position: relative;
+  color: #fff;
+  font-weight: 500;
+}

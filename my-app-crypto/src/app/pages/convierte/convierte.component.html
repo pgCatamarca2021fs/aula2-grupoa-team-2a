@@ -2,29 +2,29 @@
 <h3 class="text-center text-light">Cotizaciones de criptomonedas</h3>
   <div class="container ">
       <h4 class="text-center text-light">Convertir</h4>
-      <h6 class="text-center text-light">Convertí el monto que deseas a una moneda diferente.</h6>  
+      <h6 class="text-center text-light">Convertí el monto que deseas a una moneda diferente.</h6>
           <div class="abs-center ">
             <form action="#" class="border p-3 form bg-light" >
 
-             
+
               <div class="form-group mt-2 border border-info border-3 p-2 rounded ">
-              
+
                       <label for="criptosel">Seleccione la Moneda Origen</label>
-                      
-                     
-                        <select  class="form-select"   name="status" placeholder="select" (ngModelChange)="ngOnInit()" >
-                            <option  *ngfor="let dato of criptos" [value]="dato.symbol" >
-                              {{dato.symbol}}
-                            </option>
-                      </select>  
-                       
-              
+
+
+                  <select  class="form-select"   name="status"  >
+                        <option *ngFor="let element of criptos"  value="">
+                          {{element.symbol }}
+                        </option>
+                  </select>
+
+
                        <label for="criptosel">Importe</label>
-                       <input type="text" id="criptoinput"  class="form-control" aria-label="Text input with dropdown button" onblur="calcular();">    
+                       <input type="text" id="criptoinput"  class="form-control" aria-label="Text input with dropdown button" >
 
                        <label for="criptosel">Saldo Disponible</label>
-                       <input type="text" id="criptosaldo" class="form-control" aria-label="Text input with dropdown button" disabled>    
-                     
+                       <input type="text" id="criptosaldo" class="form-control" aria-label="Text input with dropdown button" disabled>
+
               </div>
               <div class="form-group mt-2 ">
                   <div class="container">
@@ -32,29 +32,29 @@
                   <div class="col-6">
                   <label for="criptosel "  >Cotizacion de $ a U$d </label>
                   <input type="text" id="usd"  class="input-group" disabled>
-                  </div> 
+                  </div>
                   <div class="col-6" id="testdiv">
                   <label for="criptosel "  >Timer </label>
                   <input type="text"   class="input-group" disabled>
-                  </div>    
-                  </div>    
+                  </div>
+                  </div>
                   </div>
               </div>
 
 
               <div class="form-group mt-2 border border-info border-3 p-2 rounded">
 
-              
-                <label for="criptosel">Seleccione la Criptomoneda a comprar</label>
-                <select  class="form-select" id="data"  onblur="calcular();"></select>
-              
-                <label for="criptosel">Importe de la Transaccion</label>
-                <input type="text" id="criptoresul" class="form-control" aria-label="Text input with dropdown button" disabled>    
 
-               
+                <label for="criptosel">Seleccione la Criptomoneda a comprar</label>
+                <select  class="form-select" id="data"  ></select>
+
+                <label for="criptosel">Importe de la Transaccion</label>
+                <input type="text" id="criptoresul" class="form-control" aria-label="Text input with dropdown button" disabled>
+
+
               </div>
 
-               <div class="form-group"> 
+               <div class="form-group">
               <button type="submit" class="btn btn-primary py-2 mt-4" id="btn1">Cambiar</button>
               <button type="submit" class="btn btn-outline-secondary   py-2 mt-4">Cancelar</button>
                </div>
