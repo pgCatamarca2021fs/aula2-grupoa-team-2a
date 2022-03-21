@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { UsuarioModel } from '../models';
 import { map } from 'rxjs/operators'
 import { HttpClient } from '@angular/common/http';
+import { UsuarioModel } from 'src/app/models';
 
 
 @Injectable({
