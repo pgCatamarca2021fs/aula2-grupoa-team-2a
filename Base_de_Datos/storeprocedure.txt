@@ -1,0 +1,160 @@
+USE [Criptocatamarca]
+GO
+/****** Object:  StoredProcedure [dbo].[altaCripto]    Script Date: 22/03/2022 21:24:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[altaCripto]
+	-- Add the parameters for the stored procedure here
+	@nombre varchar(3), 
+	@descripcion varchar (40)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	INSERT INTO [dbo].[Moneda]
+           ([nombre]
+           ,[descripcion]
+           ,[fecha]
+           ,[estado])
+     VALUES
+           (@nombre,@descripcion,GETDATE(),'1')
+
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[altaMovimiento]    Script Date: 22/03/2022 21:24:25 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[altaMovimiento]
+	-- Add the parameters for the stored procedure here
+	@idCuenta bigint,@tipo varchar(1),@fecha datetime, @cotizacion decimal(20,6), @impoOrigen decimal(20,6),
+	@idMonedaOrigen int, @impoDestino decimal (20,6), @idMonedaDest int, @estado varchar(1),@nip bigint
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	INSERT INTO [dbo].[Operaciones]
+           ([idCuenta]
+           ,[tipo]
+           ,[fecha]
+           ,[cotizacion]
+           ,[impoOrigen]
+           ,[idMonedaOrigen]
+           ,[impoDestino]
+           ,[idMonedaDest]
+           ,[estado]
+           ,[nip])
+     VALUES
+           (@idCuenta
+           ,@tipo
+           ,@fecha
+           ,@cotizacion
+           ,@impoOrigen
+           ,@idMonedaOrigen
+           ,@impoDestino
+           ,@idMonedaDest
+           ,@estado
+           ,@nip)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[consultaCripto]    Script Date: 22/03/2022 21:24:25 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[consultaCripto]
+	-- Add the parameters for the stored procedure here
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT [idMoneda]
+      ,[nombre]
+      ,[descripcion]
+     
+  FROM [dbo].[Moneda]
+END
+GO
+/****** Object:  StoredProcedure [dbo].[consultaMovimiento]    Script Date: 22/03/2022 21:24:25 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[consultaMovimiento]
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT idOperacion,idCuenta,tipo,fecha,cotizacion,impoOrigen,idMonedaOrigen,impoDestino,idMonedaDest,estado,nip from dbo.Operaciones
+END
+GO
+/****** Object:  StoredProcedure [dbo].[consultaSaldo]    Script Date: 22/03/2022 21:24:25 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[consultaSaldo]
+	-- Add the parameters for the stored procedure here
+	@idCuenta bigint, @moneda varchar(3)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT isNull(sum(T.salida),0) from (
+(SELECT sum(a.impoDestino)  as salida
+from dbo.Operaciones a, dbo.Moneda b 
+where a.idMonedaDest=b.idMoneda and a.idCuenta=@idCuenta and a.estado=1 and b.nombre=@moneda) 
+UNION
+(SELECT sum(a.impoOrigen)*-1 as salida 
+from dbo.Operaciones a, dbo.Moneda b 
+where a.idMonedaOrigen=b.idMoneda and a.idCuenta=@idCuenta and a.estado=1 and b.nombre=@moneda)) T
+ 
+
+END
+GO

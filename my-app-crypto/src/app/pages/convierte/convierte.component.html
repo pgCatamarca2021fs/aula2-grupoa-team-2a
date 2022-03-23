@@ -4,7 +4,7 @@
       <h4 class="text-center text-light">Convertir</h4>
       <h6 class="text-center text-light">Convertí el monto que deseas a una moneda diferente.</h6>
           <div class="abs-center ">
-            <form action="#" class="border p-3 form bg-light" >
+            <form [formGroup]="form" (ngSubmit)="altaMovimiento()" class="border p-3 form bg-light" >
 
 
               <div class="form-group mt-2 border border-info border-3 p-2 rounded ">
@@ -12,30 +12,28 @@
                       <label for="criptosel">Seleccione la Moneda Origen</label>
 
 
-                  <select  class="form-select"   name="status"  >
-                        <option *ngFor="let element of criptos"  value="">
-                          {{element.symbol }}
+                  <select  formControlName="monedaOrigen" class="form-select"   name="status" (ngModelChange)="verSaldo(5,this.form.get('monedaOrigen')?.value)">
+                        <option *ngFor="let elemento of cripto"  value="{{elemento.Nombre+elemento.IdMoneda}}">
+                          {{elemento.Nombre }} 
                         </option>
                   </select>
+                  <input type="hidden" formControlName="idMonedaOrigen"  >
+                       <label for="criptosel">Saldo Disponible </label>
+                       <input type="text" formControlName="saldoDisponible" id="criptosaldo" value="{{saldis.Importe}}" readonly class="form-control" aria-label="Text input with dropdown button" >
 
-
-                       <label for="criptosel">Importe</label>
-                       <input type="text" id="criptoinput"  class="form-control" aria-label="Text input with dropdown button" >
-
-                       <label for="criptosel">Saldo Disponible</label>
-                       <input type="text" id="criptosaldo" class="form-control" aria-label="Text input with dropdown button" disabled>
-
+                        <label for="criptosel">Importe Invertido</label>
+                       <input *ngIf="saldis.Importe>0" type="text" formControlName="importeOrigen" id="criptoinput"  value="{{saldis.Importe}}" class="form-control" aria-label="Text input with dropdown button" (blur)="onBlurEvent($event)">
               </div>
               <div class="form-group mt-2 ">
                   <div class="container">
                   <div class="row">
                   <div class="col-6">
-                  <label for="criptosel "  >Cotizacion de $ a U$d </label>
-                  <input type="text" id="usd"  class="input-group" disabled>
+                  <label for="criptosel">Cotizacion de $ a U$d </label>
+                  <input type="text" id="usd" formControlName="cotizacion" value="{{dolaroficial|currency}}" class="input-group" readonly >
                   </div>
                   <div class="col-6" id="testdiv">
-                  <label for="criptosel "  >Timer </label>
-                  <input type="text"   class="input-group" disabled>
+                  <label for="criptosel"  >Timer </label>
+                  <input type="text"   class="input-group" readonly>
                   </div>
                   </div>
                   </div>
@@ -46,11 +44,15 @@
 
 
                 <label for="criptosel">Seleccione la Criptomoneda a comprar</label>
-                <select  class="form-select" id="data"  ></select>
-
+                <select formControlName="monedaDestino" class="form-select"   name="status"  (ngModelChange)="calcularMonto(this.form.get('monedaDestino')?.value)">
+                  <option *ngFor="let element of cripto"  value="{{element.Nombre+element.IdMoneda}}"  >
+                    {{element.Nombre }}
+                  </option>
+            </select>
+            <input type="hidden" formControlName="idMonedaDestino"  >
                 <label for="criptosel">Importe de la Transaccion</label>
-                <input type="text" id="criptoresul" class="form-control" aria-label="Text input with dropdown button" disabled>
-
+                <input type="text" formControlName="importeDestino" id="criptoresul" class="form-control" aria-label="Text input with dropdown button"   >
+                
 
               </div>
 

@@ -1,0 +1,69 @@
+Enrutamiento en asp
+
+en carpeta app_start/webapConfig.cs ( se puede cambiar el nombre de la ruta como se quiera)
+
+controladores
+
+en la carpeta controlers se ponen todas las entdades a crear por ej personaControlers
+
+El controlador se conecta con angular mediante los metodos get, post, put, delete
+
+Clases
+
+las clases se crean en Modelos y tiene la nomeclatura PascalCase y singular, ademas definen el modelo de datos a utilizar
+como Persona
+Para generar contructor click sobre la clase en acciones rapidas y refacorizaciones se selecciona crear constructor
+
+Los atributos de la Clase deben ser definidos como privados para que nadie tenga acceso a la modificacion 
+de los metadatos ( se llama encapsulamiento), si quiero modifica lo puedo hacer con geter o seter, para ellos con el menu
+contextual sobre la clase y acciones rapidas se puede encapsular.
+
+Controladores 
+
+consultar saldo de cripto
+modificar saldo de cripto
+agregar saldo en $ de la cuenta
+agregar saldo en cripto de la cuenta
+
+leer usuario 
+
+"en WebConfig hay que sacar el debug=true cuando ya sale a produccion"
+
+
+Conexion a Base de datos
+
+hay que agregar la conexion en archivo WebConfig.
+tenemos que ir a explorador de servidores (a la izquierda)
+Nos vamos a Conexion de Datos y agregamos conexion (click derecho)
+Copiamos el nombre del servidor sql en (sql click derecho sobre el nombre) o ponemos un punto en el nombre y toma el local
+seleccionamos la BD y despues Conectamos
+en propiedades podemos ver la Cadena de Conexion 
+Copiamos y lo llevamos al webconfig 
+
+
+<connectionStrings>
+    <add name="nombreDeLaConexion" connectionString="aqui va lo que copiamos" />
+  </connectionStrings>
+
+debo crear una clase para gestionar los atributos de la conexion
+por eso creo GestosPersona pej 
+
+debo agregar el Systems.Configuration en el using
+y despues crear una clase con el atributo configurationManager
+y queda:     ConfigurationManager.ConnectionStrings["myDB"].ToString();
+
+
+
+Cors
+para poder trabajar con Angula
+
+Install-Package Microsoft.AspNet.WebApi.Cors
+
+despues agregar 
+
+config.EnableCors(); en WebApiConfig de la carpeta App_Start en configuracion y servicios API Web
+
+
+
+
+
