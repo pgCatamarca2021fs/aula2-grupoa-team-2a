@@ -13,7 +13,8 @@ import { UsuarioModel } from 'src/app/models';
 export class AuthService {
 
   url = "https://localhost:44305/api/Usuario";
-  
+
+
   currentUserSubject: BehaviorSubject<UsuarioModel>;
   currentUser: Observable<UsuarioModel>;
   loggedIn = new Subject<boolean>();
@@ -28,7 +29,6 @@ export class AuthService {
   }
 
 
-
   login(usuario: UsuarioModel): Observable<any> {
     return this.http.post<any>(this.url, usuario)
       .pipe(map(data => {
@@ -37,7 +37,6 @@ export class AuthService {
         this.loggedIn.next(true);
         return data;
       }));
-
   }
 
   
