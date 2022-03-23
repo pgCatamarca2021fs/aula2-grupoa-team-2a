@@ -18,27 +18,27 @@ export class RegistroComponent implements OnInit {
   usuarioEdit: any;
   usuario: any;
   accion = 'Agregar';
-  id: number | undefined;
+  id: any | undefined;
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
     private personaService: PersonaService) {
     this.form = this.formBuilder.group(
-      {
+      { //   /^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/    dd-mm-yyyy
+        //   /^\d{4}([\-/.])(0?[1-9]|1[1-2])\1(3[01]|[12][0-9]|0?[1-9])$/    yyyy-mm-dd
         password: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9\_\-]{8,20}$/,)]], // Letras, numeros, guion y guion_bajo, 8a 20 caracteres
         mail: ['', [Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/)]],//Formato estandar Email
         cuil: ['', [Validators.required, Validators.pattern(/^\d[0-9]{10}$/)]], //solo números
         nombre: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]{10,40}$/,)]],  // Letras y espacios, pueden llevar acentos.
-        fecnac: ['', [Validators.required, Validators.pattern(/^\d{4}([\-/.])(0?[1-9]|1[1-2])\1(3[01]|[12][0-9]|0?[1-9])$/)]], //solo números con /
+        fecnac: ['', [Validators.required, Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/)]], //solo números con /
         telefono: ['', [Validators.required, Validators.pattern(/^\d[0-9]{9,14}$/)]], // 11 a 15 numeros.
-        domicilio: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]{9,20}$/,)]], //minimo 10 max 20
-        domicilio2: ['',[Validators.required]],
+        domicilio: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]{9,39}$/,)]], //minimo 10 max 40
         cp: ['', [Validators.required, Validators.pattern(/^\d[0-9]{3}$/)]], //solo 5 numeros
         ciudad: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]{3,14}$/,)]], //minimo 4 max 15
         provincia: ['', [Validators.required, Validators.nullValidator]],
         pais: ['Argentina',[Validators.required]],
         banco: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{3,39}$/,)]], // Letras, numeros, 4 a 40 caracteres
-        cbu: ['', [Validators.required, Validators.pattern(/^\d[0-9]{20}$/)]], //solo números
+        cbu: ['', [Validators.required, Validators.pattern(/^\d[0-9]{21}$/)]], //solo números
         acepto: [false,Validators.requiredTrue]
       })
   }
@@ -50,7 +50,7 @@ export class RegistroComponent implements OnInit {
   get FecNac() { return this.form.get("fecnac"); }
   get Telefono() { return this.form.get("telefono"); }
   get Domicilio() { return this.form.get("domicilio"); }
-  get Domicilio2() { return this.form.get("domicilio2"); }
+  //get Domicilio2() { return this.form.get("domicilio2"); }
   get Cp() { return this.form.get("cp"); }
   get Ciudad() { return this.form.get("ciudad"); }
   get Provincia() { return this.form.get("provincia"); }
@@ -67,7 +67,7 @@ export class RegistroComponent implements OnInit {
   get FecnacValid() { return this.FecNac?.touched && !this.FecNac?.valid; }
   get TelefonoValid() { return this.Telefono?.touched && !this.Telefono?.valid; }
   get DomicilioValid() { return this.Domicilio?.touched && !this.Domicilio?.valid; }
-    get CpValid() { return this.Cp?.touched && !this.Cp?.valid; }
+  get CpValid() { return this.Cp?.touched && !this.Cp?.valid; }
   get CiudadValid() { return this.Ciudad?.touched && !this.Ciudad?.valid; }
   get ProvinciaValid() { return this.Provincia?.touched && !this.Provincia?.valid; }
   get BancoValid() { return this.Banco?.touched && !this.Banco?.valid; }
@@ -93,7 +93,7 @@ export class RegistroComponent implements OnInit {
       nombre : this.form.get("nombre")?.value,
       fnac : this.form.get("fecnac")?.value,
       domicilio : this.form.get("domicilio")?.value,
-      idProvincia : "1",//this.form.get("provincia")?.value,
+      idProvincia : this.form.get("provincia")?.value,
       pais : this.form.get("pais")?.value,
       tipo : "1",
       estado : "1",
@@ -108,33 +108,35 @@ export class RegistroComponent implements OnInit {
       //domicilio2 : this.form.get("domicilio2")?.value,
       //cp : this.form.get("cp")?.value,
       //ciudad : this.form.get("ciudad")?.value,
-    }
-    console.log(usuario);
-    if (this.form.valid)
-    {
-     console.log("enviando al servidor");
-
-     console.log(usuario);
-
-     this.personaService.insertarPersona(usuario) .subscribe(data => {
-         //console.log(data);
-         if (data.id >0)
-         {
-          Swal.fire('Registro', 'Datos guardados correctamente', 'success');
-          //this.router.navigate(['/login'])
-         }
-     })
+      }
+      if (this.form.valid && this.id == undefined)
+      {
+       console.log("enviando al servidor");
+       console.log(usuario);
+       this.personaService.insertarPersona(usuario).subscribe(data => {
+       Swal.fire('Registro', 'Datos guardados correctamente', 'success');
+       this.form.reset();
+      }, error => {
+        Swal.fire('Registro', 'ocurrió un error.', 'warning');
+      })
     } else {
-      console.log(this.Acepto);
-      console.log(this.form.valid);
-      this.form.markAllAsTouched();
-    }
+      console.log("enviando la modificacion al servidor ");
+      this.personaService.modificarPersona(this.id, usuario).subscribe(data => {
+      this.form.reset();
+      this.accion = 'Agregar';
+      this.id = undefined;
+      Swal.fire('Registro', 'Datos Actualizados correctamente', 'success');
+    })
+     //this.router.navigate(['/login'])
+
     //this.persona.push(persona);
     //alert('El usuario fue registrado correctamente!');
     //this.form.reset();
-  }
 
-  editarPersona(usuario: any) {
+  }
+}
+
+  editarPersona(id : number, usuario : any) {
     this.accion = 'Editar';
     this.id = this.usuarioEdit.id;
 
@@ -146,7 +148,7 @@ export class RegistroComponent implements OnInit {
       fnac : this.usuarioEdit.fnac,
       telefono : this.usuarioEdit.telefono,
       domicilio : this.usuarioEdit.domicilio,
-      domicilio2 : this.usuarioEdit.domicilio2,
+      //domicilio2 : this.usuarioEdit.domicilio2,
       cp : this.usuarioEdit.cp,
       ciudad : this.usuarioEdit.ciudad,
       banco : this.usuarioEdit.banco,
@@ -157,13 +159,6 @@ export class RegistroComponent implements OnInit {
        //DniFrente: "1",
       //DniDorso: "1",
     })
-    console.log(usuario);
-    if (this.form.valid)
-    {
-     console.log("enviando al servidor la modificacion");
-
-     console.log(usuario);
-    }
 
   }
   /*
