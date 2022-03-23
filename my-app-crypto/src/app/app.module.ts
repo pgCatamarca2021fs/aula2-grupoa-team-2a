@@ -7,10 +7,12 @@ import { LayoutModule } from './layout/layout.module';
 import { PagesModule } from './pages/pages.module';
 import { NgChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+//import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -27,8 +29,10 @@ import { CommonModule } from '@angular/common';
     PagesModule,
     NgChartsModule,
     CommonModule,
-    HttpClientModule
-
+    ReactiveFormsModule,
+    HttpClientModule,BrowserAnimationsModule, // required animations module
+    //ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot()
 
   ],
   providers: [],

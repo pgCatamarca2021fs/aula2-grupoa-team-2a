@@ -3,7 +3,7 @@
     
   <div class="container">
       <div class="abs-center">
-        <form action="#" class="border p-3 form bg-light">
+        <form [formGroup]="form1" (ngSubmit)="altaDeposito()" class="border p-3 form bg-light">
           
               <h2 class="text-center">Ingreso de Fondos a la Cuenta Propia</h2>
                   <ul class="list-group d-flex align-items-center">
@@ -11,8 +11,16 @@
                   <li >Transferencia Bancaria</li>
                   <li>Deposita pesos argentinos desde una cuenta propia.</li>
                   <li>CVU 0000025300000030751495</li>
+                  
                   </ul>
-          
+                  <ul class="list-group d-flex align-items-center">
+                    <li> Ingrese el Importe en Pesos a depositar </li>
+                    <li><input  type="text"  id="impoDestino" formControlName="impoDestino"   aria-label="Text input with dropdown button" placeholder="$" ></li>
+                  </ul>  
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary py-2 mt-4" id="btn1">Confirmar</button>
+                    <button type="submit" class="btn btn-outline-secondary   py-2 mt-4">Cancelar</button>
+                  </div>
           
         </form>
       </div>
