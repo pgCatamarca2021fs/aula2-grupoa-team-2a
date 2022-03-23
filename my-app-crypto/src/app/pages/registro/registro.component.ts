@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PersonaService } from 'src/app/services/persona.service';
+import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { UsuarioModel } from 'src/app/models';
 
@@ -36,6 +37,8 @@ export class RegistroComponent implements OnInit {
         ciudad: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]{3,14}$/,)]], //minimo 4 max 15
         provincia: ['', [Validators.required, Validators.nullValidator]],
         pais: ['Argentina',[Validators.required]],
+        banco: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{3,39}$/,)]], // Letras, numeros, 4 a 40 caracteres
+        cbu: ['', [Validators.required, Validators.pattern(/^\d[0-9]{20}$/)]], //solo números
         acepto: [false,Validators.requiredTrue]
       })
   }
@@ -52,13 +55,10 @@ export class RegistroComponent implements OnInit {
   get Ciudad() { return this.form.get("ciudad"); }
   get Provincia() { return this.form.get("provincia"); }
   get Pais() { return this.form.get("pais")?.value; }
+  get Banco() { return this.form.get("banco"); }
+  get Cbu() { return this.form.get("cbu"); }
   get Acepto() { return this.form.get("acepto"); }
-  /*
-  get Cbu(){return this.form.get("cbu");}
-  get Bando(){return this.form.get("banco");}
-  get DniFrente(){return this.form.get("dniFrente");}
-  get DniDorso(){return this.form.get("dniDorso");}
-  */
+
   //Validaciones
   get MailValid() { return this.Mail?.touched && !this.Mail?.valid; }
   get PasswordValid() { return this.Password?.touched && !this.Password?.valid; }
@@ -67,16 +67,12 @@ export class RegistroComponent implements OnInit {
   get FecnacValid() { return this.FecNac?.touched && !this.FecNac?.valid; }
   get TelefonoValid() { return this.Telefono?.touched && !this.Telefono?.valid; }
   get DomicilioValid() { return this.Domicilio?.touched && !this.Domicilio?.valid; }
-  //get Domicilio2Valid() { return this.Domicilio2?.touched && !this.Domicilio2?.valid; }
-  get CpValid() { return this.Cp?.touched && !this.Cp?.valid; }
+    get CpValid() { return this.Cp?.touched && !this.Cp?.valid; }
   get CiudadValid() { return this.Ciudad?.touched && !this.Ciudad?.valid; }
   get ProvinciaValid() { return this.Provincia?.touched && !this.Provincia?.valid; }
-  /*
-  get Cbu(){return this.form.get("cbu");}
-  get Banco(){return this.form.get("banco");}
-  get DniFrente(){return this.form.get("dniFrente");}
-  get DniDorso(){return this.form.get("dniDorso");}
-  */
+  get BancoValid() { return this.Banco?.touched && !this.Banco?.valid; }
+  get CbuValid() { return this.Cbu?.touched && !this.Cbu?.valid; }
+
   ngOnInit(): void {
     this.obtenerPersona();
   }
@@ -97,13 +93,13 @@ export class RegistroComponent implements OnInit {
       nombre : this.form.get("nombre")?.value,
       fnac : this.form.get("fecnac")?.value,
       domicilio : this.form.get("domicilio")?.value,
-      idProvincia : "1",
+      idProvincia : "1",//this.form.get("provincia")?.value,
       pais : this.form.get("pais")?.value,
       tipo : "1",
       estado : "1",
       fechaAlta : new Date(),
-      Cbu : "1",
-      Banco : "1",
+      Cbu : this.form.get("cbu")?.value,
+      Banco : this.form.get("banco")?.value,
       DniFrente: "1",
       DniDorso: "1",
       pass : this.form.get("password")?.value,
@@ -118,13 +114,13 @@ export class RegistroComponent implements OnInit {
     {
      console.log("enviando al servidor");
 
-     //console.log(usuario);
+     console.log(usuario);
 
      this.personaService.insertarPersona(usuario) .subscribe(data => {
-         console.log(data);
+         //console.log(data);
          if (data.id >0)
          {
-          alert("El registro ha sido creado satisfactoriamente. A continuación, por favor Inicie Sesión.");
+          Swal.fire('Registro', 'Datos guardados correctamente', 'success');
           //this.router.navigate(['/login'])
          }
      })
@@ -153,12 +149,12 @@ export class RegistroComponent implements OnInit {
       domicilio2 : this.usuarioEdit.domicilio2,
       cp : this.usuarioEdit.cp,
       ciudad : this.usuarioEdit.ciudad,
+      banco : this.usuarioEdit.banco,
+      cbu : this.usuarioEdit.cbu,
       idProvincia : this.usuarioEdit.idProvincia
 
       //fechaAlta : new Date(),
-      //Cbu : "1",
-      //Banco : "1",
-      //DniFrente: "1",
+       //DniFrente: "1",
       //DniDorso: "1",
     })
     console.log(usuario);

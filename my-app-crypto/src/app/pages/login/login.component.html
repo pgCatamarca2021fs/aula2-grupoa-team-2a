@@ -3,51 +3,57 @@
   <div class="container-fluid" style="padding: 10px;">
     <div class="d-flex justify-content-end">
       <div class="card" style="width: 17rem; padding: 2px; background-color: rgb(172, 142, 87);">
-        <img src="/my-app-crypto/src/assets/images/user_cripto(2).png" class="card-img-top display-block" height="20%"
+        <img src="/assets/images/user_cripto(2).png" class="card-img-top display-block" height="20%"
           alt="user">
         <div class="card-body bg-dark">
           <h5 class="card-text text-light">iniciar Sesión:</h5>
-          <form [formGroup]="form" action="" class="formulario row g-2 bg-dark" metod="POST" id="form_login">
+          <form [formGroup]="form" (ngSubmit)="obtenerPersonaLogin(this.form.get('mail')?.value, this.form.get('password')?.value)" action="" class="formulario row g-2 bg-dark" metod="POST" id="form_login">
             <div class="col-md-12">
               <label for="Email" class="form-label text-light">Email: </label>
-              <input type="email" formControlName="mail" class="form-control" [class.border-danger]="MailValid"
-                id="email">
+              <input formControlName="mail" maxlength="100" id="mail" class="form-control"
+              [class.border-danger]="MailValid" type="email" placeholder="Email" required>
               <!--Respuesta en pantalla-->
-              <div *ngIf="Mail?.errors || Mail?.touched">
-                <p *ngIf="Mail?.hasError('required')" class="text-danger">
+              <div *ngIf="Mail?.errors && Mail?.touched">
+                <p *ngIf="Mail?.hasError('mail')" class="text-danger">
                   Ingrese su email.
                 </p>
-                <p *ngIf="Mail?.hasError('email')" class="text-danger">
-                  El formato del email debe ser válido, ej:"mail@mail.com".
+                <p *ngIf="Mail?.hasError('pattern')" class="text-danger">
+                   Formato admitido: "mail@mail.com".
                 </p>
               </div>
             </div>
             <div class="col-md-12">
               <label for="Password" class="form-label text-light">Password: </label>
-              <input type="password" formControlName="password" [class.border-danger]="PasswordValid"
-                class="form-control" id="password">
+              <input formControlName="password" type="password" maxlength="200" id="Password"
+                class="form-control" placeholder="Password" required>
+                <!-- <input formControlName="password" type="password" maxlength="200" id="iPassword" class="form-control"
+              placeholder="Password" required>-->
               <!--Respuesta en pantalla-->
-              <div *ngIf="Password?.errors || Password?.touched">
+              <div *ngIf="Password?.errors && Password?.touched">
                 <p *ngIf="Password?.hasError('required')" class="text-danger">
-                  Password no fué ingresado.
+                   Password no fué ingresado.
                 </p>
-                <p *ngIf="Password?.hasError('password')" class="text-danger">
-                  Contraseña debe contener al menos 8 caracteres.
+                <p *ngIf="Password?.hasError('pattern')" class="text-danger">
+                   Debe contener al menos 8 caracteres (max20).
                 </p>
               </div>
             </div>
             <div class="col-12">
-              <div class="form-check">
+              <!--<div class="form-check">
                 <input class="form-check-input" type="checkbox" id="cb_iniciada">
                 <label class="form-check-label text-light" for="cb_iniciada">Mantener
                   Iniciada
                   mi
                   Sesión
                 </label>
-              </div>
+              </div>-->
             </div>
             <div class="col-12">
-              <button routerLink="/dashboard" type="submit" id="ingresar" class="btn btn-primary">Ingresar</button>
+              <br>
+              <button [disabled]="this.form.invalid" type="submit" id="ingresar"
+               class="btn btn-primary"><i class="fas fa-key"></i>&nbsp;Ingresar</button>
+              <!--<button [disabled]="this.form.invalid" type="submit" id="ingresar"
+              class="btn btn-primary"><i class="fas fa-database"></i>&nbsp;Registrar</button>-->
             </div>
           </form>
         </div>

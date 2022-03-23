@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="col-sm-4">
-              <label for="IPassword"  class="form-label text-light">Password:</label>
+            <label for="IPassword" class="form-label text-light">Password:</label>
             <input formControlName="password" type="password" maxlength="200" id="iPassword" class="form-control"
               placeholder="Password" required>
             <!--Respuesta en campo-->
@@ -68,9 +68,8 @@
           </div>
           <div class="col-sm-4">
             <label for="IngresarFecNac" class="form-label text-light">Fecha Nacimiento:</label>
-            <input formControlName="fecnac" class="form-control" type="text"
-            [class.border-danger]="FecnacValid"
-            id="fechanacim" style="display:list-item;" required>
+            <input formControlName="fecnac" class="form-control" type="text" [class.border-danger]="FecnacValid"
+              id="fechanacim" style="display:list-item;" required>
             <!--<input formControlName="fecnac" matInput [matDatepicker]="picker" class="form-control" type="text"
             id="fecnac" style="display:list-item;">
               <mat-datepicker #picker></mat-datepicker>
@@ -192,21 +191,51 @@
             <label for="lpaís" class="form-label text-light">País</label>
             <input formControlName="pais" type="text" class="form-control" id="pais" Value="Argentina" readonly>
           </div>
+          <!--Quinta Linea-->
+          <div class="col-sm-3">
+            <label for="Banco" class="form-label text-light">Banco:</label>
+            <input formControlName="banco" class="form-control" type="text" [class.border-danger]="BancoValid"
+              class="form-control" id="banco" required>
+            <!--Respuesta en campo-->
+            <div *ngIf="Banco?.errors && Banco?.touched">
+              <p *ngIf="Banco?.hasError('required')" class="text-danger">
+                Ingrese nombre del Banco.
+              </p>
+              <p *ngIf="Banco?.hasError('pattern')" class="text-danger">
+                Debe contener al menos 4 caracteres.
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <label for="Cbu" class="form-label text-light">Nro. de Cbu:</label>
+            <input formControlName="cbu" class="form-control" type="text" [class.border-danger]="CbuValid"
+              class="form-control" id="cbu" required>
+            <!--Respuesta en campo-->
+            <div *ngIf="Cbu?.errors && Cbu?.touched">
+              <p *ngIf="Cbu?.hasError('required')" class="text-danger">
+                Ingrese su nro de Cbu.
+              </p>
+              <p *ngIf="Cbu?.hasError('pattern')" class="text-danger">
+                La Cbu debe contener 22 caracteres.
+              </p>
+            </div>
+          </div>
           <div class="col-sm-12">
             <div class="form-group">
-              <input formControlName="acepto" class="form-check-input" type="checkbox" id="acepto" [ngClass]="{ 'is-invalid': Acepto?.errors }" required>
+              <input formControlName="acepto" class="form-check-input" type="checkbox" id="acepto"
+                [ngClass]="{ 'is-invalid': Acepto?.errors }" required>
               <a href="#" class="form-check-label text-light" for="acepto">Acepto los términos y Condiciones
               </a>
               <div *ngIf="Acepto?.errors" class="text-danger">
-               Debe aceptar términos y condiciones.
+                Debe aceptar términos y condiciones.
               </div>
             </div>
           </div>
           <div class="col-sm-12">
             <br>
-            <button [disabled]="this.form.invalid" type="submit" id="ingresar"
-              class="btn btn-primary"><i class="fas fa-database"></i>&nbsp;Registrar</button>
-              <!--<button [disabled]="this.form.invalid" type="submit" id="ingresar"
+            <button [disabled]="this.form.invalid" type="submit" id="ingresar" class="btn btn-primary"><i
+                class="fas fa-database"></i>&nbsp;Registrar</button>
+            <!--<button [disabled]="this.form.invalid" type="submit" id="ingresar"
               class="btn btn-primary"><i class="fas fa-database"></i>&nbsp;Modificar</button>
               <button [disabled]="this.form.invalid" type="submit" id="ingresar"
               class="btn btn-primary"><i class="fas fa-database"></i>&nbsp;Eliminar</button>-->
