@@ -15,12 +15,11 @@
           <li class="nav-item"><a class="nav-link" href="#">Preguntas Frecuentes</a></li>
         </ul>
 
-          <div class="navbar-collapse"></div>
-          <a class="nav-link" routerLink="/login">Iniciar Sesión</a>
-          <a routerLink="/registro" class="btn btn-outline-success bg-primary text-white">Registrarse</a>
-            
+          <div class="navbar-collapse"></div>    
+          <a *ngIf="logeado" class="nav-link" routerLink="/login">Iniciar Sesión</a>
+          <a *ngIf="logeado" routerLink="/registro" class="btn btn-outline-success bg-primary text-white">Registrarse</a>
           <ul class="navbar-nav">
-            <li class="nav-item dropdown">
+            <li *ngIf="!logeado" class="nav-item dropdown">
                 <div class="nav-link circulo_profile" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><span class="iniciales">JP</span></div>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">     
                     <li><a class="dropdown-item" href="#">Mi Perfil</a></li>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { UsuarioModel } from 'src/app/models';
 
 
 @Component({
@@ -8,13 +8,28 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./header.component.css']
 })
 
-
-
 export class HeaderComponent implements OnInit {
 
-  constructor( private loginestado : AuthService) { }
+  
+  public logeado : boolean = true;
+  public datosUsuario : UsuarioModel = JSON.parse(localStorage.getItem('currentUser')!);
+  public idUser: number = this.datosUsuario.Id;
+
+  constructor() {}
 
   ngOnInit(): void {
-  }
+
+    if (this.idUser > 0){
+      this.logeado = false;
+    }
+ 
+    console.log(this.datosUsuario);
+    console.log(this.logeado);
+    console.log(this.idUser);
+
+    }
+
 
 }
+  
+
