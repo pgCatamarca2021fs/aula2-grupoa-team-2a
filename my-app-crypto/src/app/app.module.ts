@@ -9,10 +9,14 @@ import { NgChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
-//import { ToastrModule } from 'ngx-toastr';
+
+import  { MatDatepickerModule }  from '@angular/material/datepicker';
+import  { MatFormFieldModule } from '@angular/material/form-field';
+import  { MatNativeDateModule }  from '@angular/material/core';
+
 
 
 
@@ -29,11 +33,12 @@ import { ToastrModule } from 'ngx-toastr';
     PagesModule,
     NgChartsModule,
     CommonModule,
-    ReactiveFormsModule,
-    HttpClientModule,BrowserAnimationsModule, // required animations module
-    //ToastrModule.forRoot() // ToastrModule added
-    ToastrModule.forRoot()
-
+    HttpClientModule,
+    NoopAnimationsModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
