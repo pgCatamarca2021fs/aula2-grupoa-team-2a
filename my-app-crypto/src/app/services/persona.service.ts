@@ -32,6 +32,11 @@ export class PersonaService {
   }));
   }
 
+  logout(): void {
+    localStorage.removeItem('currentUser');
+  }
+
+
   insertarPersona(usuario: any):Observable<any>{
     return this.http.post(this.myAppCriptoUrl + this.myApiUrl +"/", usuario);
   }

@@ -13,22 +13,27 @@ export class HeaderComponent implements OnInit {
   
   public logeado : boolean = true;
   public datosUsuario : UsuarioModel = JSON.parse(localStorage.getItem('currentUser')!);
-  public idUser: number = this.datosUsuario.Id;
+  public idUser: number = 0;
 
   constructor() {}
 
+
   ngOnInit(): void {
 
-    if (this.idUser > 0){
+    if (this.datosUsuario !== null){
       this.logeado = false;
     }
+
+    if (this.datosUsuario !== null){
+      this.idUser=this.datosUsuario.Id;
+    }
  
+
     console.log(this.datosUsuario);
     console.log(this.logeado);
     console.log(this.idUser);
 
     }
-
 
 }
   
