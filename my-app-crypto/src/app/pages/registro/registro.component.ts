@@ -88,11 +88,11 @@ export class RegistroComponent implements OnInit {
   }
 
   guardarPersona() {
-    const usuario: any = {
+      const usuario: any = {
       cuil : this.form.get("cuil")?.value,
       nombre : this.form.get("nombre")?.value,
       fnac : this.form.get("fecnac")?.value,
-      domicilio : this.form.get("domicilio")?.value,
+      domicilio : this.form.get("domicilio")?.value +", "+ this.form.get("domicilio2")?.value,
       idProvincia : this.form.get("provincia")?.value,
       pais : this.form.get("pais")?.value,
       tipo : "1",
