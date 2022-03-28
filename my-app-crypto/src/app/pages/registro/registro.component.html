@@ -151,7 +151,7 @@
             <label for="IngresarProvincia" class="form-label text-light">Provincia:
             </label>
             <select formControlName="provincia" id="provincia" class="form-select" required>
-              <option selected disabled value="">Seleccione..</option>
+              <option selected disabled value="0">Seleccione..</option>
               <option value="1">Buenos Aires</option>
               <option value="2">Capital Federal</option>
               <option value="3">Catamarca</option>
@@ -231,14 +231,17 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-12">
+          <div class="col-sm-2">
             <br>
             <button [disabled]="this.form.invalid" type="submit" id="ingresar" class="btn btn-primary"><i
                 class="fas fa-database"></i>&nbsp;Registrar</button>
-            <!--<button [disabled]="this.form.invalid" type="submit" id="ingresar"
-              class="btn btn-primary"><i class="fas fa-database"></i>&nbsp;Modificar</button>
-              <button [disabled]="this.form.invalid" type="submit" id="ingresar"
-              class="btn btn-primary"><i class="fas fa-database"></i>&nbsp;Eliminar</button>-->
+          </div>
+          <div class="col-sm-2">
+            <br>
+            <button type="submit" id="Modificar"
+            class="btn btn-primary"><i class="fas fa-database"></i>&nbsp;Modificar</button>
+          <!--  <button [disabled]="this.form.invalid" type="submit" id="ingresar"
+            class="btn btn-primary"><i class="fas fa-database"></i>&nbsp;Eliminar</button>-->
           </div>
         </form>
       </div>
