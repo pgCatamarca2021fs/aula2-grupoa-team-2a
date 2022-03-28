@@ -1,0 +1,4 @@
+.dashboard {
+    background: rgb(22,34,50);
+    background: linear-gradient(120deg, rgba(22,34,50,1) 0%, rgba(41,67,102,1) 35%, rgba(59,97,144,1) 100%);
+  }
