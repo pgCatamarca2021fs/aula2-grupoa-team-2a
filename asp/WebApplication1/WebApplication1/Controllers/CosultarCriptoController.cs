@@ -33,8 +33,10 @@ namespace WebApplication1.Controllers
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Cripto value)
         {
+            GestorCripto gestorCripto = new GestorCripto();
+            gestorCripto.ModificaCripto(id,value);
         }
 
         // DELETE api/<controller>/5
