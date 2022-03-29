@@ -34,13 +34,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td><img src="assets/images/btc.png" class="iconito" alt=""> Bitcoin</td>
-                      <td>0.00322179</td>
-                    </tr>
-                    <tr>
-                      <td><img src="assets/images/eth.png" class="iconito" alt=""> Ethereum</td>
-                      <td>0.02166552</td>
+                    <tr *ngFor="let saldos of saldos">
+                      <td *ngIf="this.saldos.Nombre !=='ARS'">{{saldos.Nombre}}</td>
+                      <td *ngIf="this.saldos.Nombre !== 'ARS'">{{saldos.Saldo | currency:'':''}}</td>
                     </tr>
                   </tbody>
                 </table>

@@ -178,6 +178,7 @@
     <Compile Include="Models\CuentaCripto.cs" />
     <Compile Include="Models\GestorCompra.cs" />
     <Compile Include="Models\Persona.cs" />
+    <Compile Include="Models\SaldosTodos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Chart } from 'chart.js';
 import {DataChartService} from '../../services/data-chart.service'
 import { ApiService } from 'src/app/services/api.service';
+import { SaldosTodos } from 'src/app/models';
 
 
 @Component({
@@ -21,15 +22,22 @@ export class DashboardComponent implements OnInit{
   public datecharteth: any = [];
   public charteth : any = [];
   saldis : any = [];
+  saldos: any = [];
   public dolaroficial: any;
   
   constructor ( private dataChartBtc: DataChartService,
                 private dataChartEth: DataChartService,
                 private cotizacionDolar: DataChartService,
+                private consultarSaldosTodos :DataChartService,
                 private Apiservice: ApiService) {}
 
 
    ngOnInit(): void {
+
+    this.consultarSaldosTodos.consultarSaldosTodos(5)
+    .subscribe(resp => {
+      this.saldos = resp;
+      console.log(this.saldos);
 
     this.Apiservice.consultarSaldo(5, 'ARS').subscribe(respuestaSaldo => { this.saldis = respuestaSaldo;});
 
@@ -101,4 +109,4 @@ export class DashboardComponent implements OnInit{
       )}
     )}         
     )}
-      }
+    )}}

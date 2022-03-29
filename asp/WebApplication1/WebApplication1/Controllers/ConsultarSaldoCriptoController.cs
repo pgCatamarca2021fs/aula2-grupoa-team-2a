@@ -32,6 +32,17 @@ namespace WebApplication1.Controllers
             
         }
 
+
+        [HttpGet]
+        [Route("api/consultarSaldos")]
+        public IEnumerable<SaldosTodos> Get(int idCuenta)
+        {
+            GestorCompra gestorCompra = new GestorCompra();
+            return gestorCompra.ConsultarSaldos(idCuenta);
+        }
+
+
+
         // POST api/<controller>
         public void Post([FromBody] CuentaCripto cuentaCripto)
         {

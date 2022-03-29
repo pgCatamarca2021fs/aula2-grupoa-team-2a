@@ -88,7 +88,32 @@ namespace WebApplication1.Models
 
         }
 
+        // consultar Saldos
+        public List<SaldosTodos> ConsultarSaldos( int idCuenta)
+        {
+            List<SaldosTodos> verSaldos = new List<SaldosTodos>();
+            using (SqlConnection connection = new SqlConnection(this.conexionString))
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "consultaTodosSaldos";
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@idCuenta", idCuenta));
 
+                // se usa datareader solo para el select
+
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    SaldosTodos saldoTotal = new SaldosTodos();
+                    saldoTotal.IdCuenta = idCuenta;
+                    saldoTotal.Nombre = dataReader.GetString(0);
+                    saldoTotal.Saldo = dataReader.GetDecimal(1);
+                    verSaldos.Add(saldoTotal);
+                }
+            }
+            return verSaldos;
+        }
 
 
         // alta de movimiento
