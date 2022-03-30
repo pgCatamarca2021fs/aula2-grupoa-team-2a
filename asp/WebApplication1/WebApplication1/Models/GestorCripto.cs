@@ -68,6 +68,31 @@ namespace WebApplication1.Models
 
         }
 
+        // Modifica Cripto
+
+        public void ModificaCripto(int id ,Cripto cripto)
+        {
+
+            using (SqlConnection connection = new SqlConnection(this.conexionString))
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "modificaCripto";
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@idmoneda", id));
+                command.Parameters.Add(new SqlParameter("@nombre", cripto.Nombre));
+                command.Parameters.Add(new SqlParameter("@descripcion", cripto.Descripcion));
+
+                command.ExecuteReader();
+
+
+            }
+
+
+        }
+
+        // Baja Cripto
+
 
     }
 }

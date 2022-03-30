@@ -16,6 +16,7 @@ export interface UsuarioModel {
     Pass:        string;
     Mail:        string;
     Telefono:    string;
+    IdCuenta:    number;
 }
 
 

@@ -2,8 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Chart } from 'chart.js';
 import {DataChartService} from '../../services/data-chart.service'
 import { ApiService } from 'src/app/services/api.service';
-import { SaldosTodos } from 'src/app/models';
-
+import { UsuarioModel } from 'src/app/models';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,25 +20,41 @@ export class DashboardComponent implements OnInit{
   public datacharteth : any = [];
   public datecharteth: any = [];
   public charteth : any = [];
-  saldis : any = [];
-  saldos: any = [];
+  public saldis : any = [];
+  public saldos: any = [];
+  public movimientos: any = [];
   public dolaroficial: any;
+
+  public datosUsuario : UsuarioModel = JSON.parse(localStorage.getItem('currentUser')!);
+  public idCuenta: number = 0;
+
   
   constructor ( private dataChartBtc: DataChartService,
                 private dataChartEth: DataChartService,
                 private cotizacionDolar: DataChartService,
                 private consultarSaldosTodos :DataChartService,
+                private consultarMovimientosTodos : DataChartService,
                 private Apiservice: ApiService) {}
 
 
    ngOnInit(): void {
 
-    this.consultarSaldosTodos.consultarSaldosTodos(5)
+    if (this.datosUsuario !== null){
+      this.idCuenta=this.datosUsuario.IdCuenta;
+    }
+
+    this.consultarMovimientosTodos.consultarMovimientos(this.idCuenta)
+    .subscribe(resp => {
+      this.movimientos = resp;
+      console.log(this.movimientos);
+
+
+    this.consultarSaldosTodos.consultarSaldosTodos(this.idCuenta)
     .subscribe(resp => {
       this.saldos = resp;
       console.log(this.saldos);
 
-    this.Apiservice.consultarSaldo(5, 'ARS').subscribe(respuestaSaldo => { this.saldis = respuestaSaldo;});
+    this.Apiservice.consultarSaldo(this.idCuenta, 'ARS').subscribe(respuestaSaldo => { this.saldis = respuestaSaldo;});
 
 
     this.cotizacionDolar.cotizacionDolar()
@@ -109,4 +124,6 @@ export class DashboardComponent implements OnInit{
       )}
     )}         
     )}
-    )}}
+    )}
+    )}
+      }

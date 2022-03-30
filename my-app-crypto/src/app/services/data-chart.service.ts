@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ReqResResponse, CotizaDolar, SaldosTodos } from '../models';
+import { ReqResResponse, CotizaDolar, SaldosTodos, MovimientosTodos } from '../models';
 import { map } from 'rxjs';
 
 @Injectable({
@@ -46,5 +46,10 @@ export class DataChartService {
     return this.http.get<SaldosTodos>(url + idCuenta);
   }
 
+
+  consultarMovimientos(idCuenta: number) {
+    const url = 'https://localhost:44336/api/ConsultaMovimientos?idCuenta=';
+    return this.http.get<MovimientosTodos>(url + idCuenta);
+  }
 
 }

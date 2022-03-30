@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsuarioModel } from 'src/app/models';
 
 
@@ -17,9 +18,10 @@ message: string = 'editarPersona()';
 
   public logeado : boolean = true;
   public datosUsuario : UsuarioModel = JSON.parse(localStorage.getItem('currentUser')!);
-  public idUser: number = 0;
+  public idCuenta: number = 0;
+  public nombre: any;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   sendMessage() {
     this.messageEnvent.emit(this.message);
@@ -33,16 +35,27 @@ message: string = 'editarPersona()';
     }
 
     if (this.datosUsuario !== null){
-      this.idUser=this.datosUsuario.Id;
+      this.idCuenta=this.datosUsuario.IdCuenta;
+      this.nombre=this.datosUsuario.Nombre;
     }
 
-
-    console.log(this.datosUsuario);
-    console.log(this.logeado);
-    console.log(this.idUser);
-
+    if (this.idCuenta == 0) {
+      this.router.navigate(['/home']);
     }
 
 }
 
+logout(): void {
+  localStorage.removeItem('currentUser');
+  window.location.reload();
+}
 
+
+getInitials(nameString: string) {
+  const fullName : any = nameString.split(' ');
+  const initials = fullName.shift().charAt(0) + fullName.pop().charAt(0);
+  return initials.toUpperCase();
+}
+
+
+}

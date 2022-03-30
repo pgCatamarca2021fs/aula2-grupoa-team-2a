@@ -10,33 +10,29 @@ using WebApplication1.Models;
 namespace WebApplication1.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class CosultarCriptoController : ApiController
+    public class ConsultaMovimientosController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<Cripto> Get()
+        public IEnumerable<string> Get()
         {
-            GestorCripto gestorCripto = new GestorCripto();
-            return gestorCripto.ConsultarCripto();
+            return new string[] { "value1", "value2" };
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public IEnumerable<ConsultaMovimiento> Get(int idCuenta)
         {
-            return "value";
+            GestorConsultaMovimiento gestorMovimiento = new GestorConsultaMovimiento();
+            return gestorMovimiento.ConsultarMovimientos(idCuenta);
         }
 
         // POST api/<controller>
-        public void Post([FromBody] Cripto value)
+        public void Post([FromBody] string value)
         {
-            GestorCripto gestorCripto = new GestorCripto();
-            gestorCripto.AltaCripto(value);
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody] Cripto value)
+        public void Put(int id, [FromBody] string value)
         {
-            GestorCripto gestorCripto = new GestorCripto();
-            gestorCripto.ModificaCripto(id,value);
         }
 
         // DELETE api/<controller>/5

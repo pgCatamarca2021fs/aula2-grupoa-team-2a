@@ -161,6 +161,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ConsultaMovimientosController.cs" />
     <Compile Include="Controllers\ConsultarSaldoCriptoController.cs" />
     <Compile Include="Controllers\CosultarCriptoController.cs" />
     <Compile Include="Controllers\DepositoController.cs" />
@@ -170,10 +171,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\GestorConsultaMovimiento.cs" />
     <Compile Include="Models\GestorPersona.cs" />
     <Compile Include="Models\Cripto.cs" />
     <Compile Include="Models\DepositoPesos.cs" />
     <Compile Include="Models\GestorCripto.cs" />
+    <Compile Include="Models\ConsultaMovimiento.cs" />
     <Compile Include="Models\Saldo.cs" />
     <Compile Include="Models\CuentaCripto.cs" />
     <Compile Include="Models\GestorCompra.cs" />

@@ -25,7 +25,7 @@
                 <ul class="dropdown-menu dropdown-menu-end"  aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" [routerLink]="['/registro']" (click)="sendMessage()" >Editar mi Perfil</a></li>
                     <div class="dropdown-divider"></div>
-                    <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+                    <li><a class="dropdown-item" (click)="logout()">Cerrar Sesión</a></li>
                 </ul>
             </li>
           </ul>
