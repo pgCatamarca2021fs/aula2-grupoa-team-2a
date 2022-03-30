@@ -65,16 +65,15 @@
                 <tr>
                   <th scope="col">Fecha</th>
                   <th scope="col">Operación</th>
-                  <th scope="col">Moneda</th>
+                  <!-- <th scope="col">Moneda</th> -->
                   <th scope="col">Monto</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let item of movimientos.slice(-4).reverse()">
                   <td>{{item.Fecha | date:'dd/MM/yy HH:mm':'-06:00'}}</td>
-                  <td *ngIf="this.item.MonedaDest=='ARS'">Deposito en Cuenta</td>
-                  <td *ngIf="this.item.MonedaDest!=='ARS'">Compra</td>
-                  <td>{{item.MonedaDest}}</td>
+                  <td>{{mensajeMovimientos(item.MonedaOrigen, item.MonedaDest)}}</td>
+                  <!-- <td>{{item.MonedaDest}}</td> -->
                   <td>{{item.ImpoDestino}}</td>
                 </tr>
               </tbody>

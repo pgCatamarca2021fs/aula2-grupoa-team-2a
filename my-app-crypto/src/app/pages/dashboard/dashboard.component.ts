@@ -126,4 +126,14 @@ export class DashboardComponent implements OnInit{
     )}
     )}
     )}
+
+    mensajeMovimientos (monedaOrigen: string, monedaDestino: string) {
+      let operacion: string = '';
+      if (monedaOrigen == 'ARS' && monedaDestino == 'ARS'){ operacion = 'Fondea Cuenta con Pesos Argentinos'}
+      if (monedaOrigen == 'ARS' && monedaDestino != 'ARS'){ operacion = `Compra ${monedaDestino} con Pesos Argentinos`}
+      if (monedaOrigen != 'ARS' && monedaDestino == 'ARS'){ operacion = `Convierte ${monedaOrigen} a Pesos Argentinos`}
+      if (monedaOrigen != 'ARS' && monedaDestino != 'ARS'){ operacion = `Convierte ${monedaOrigen} a ${monedaDestino}`}
+      return operacion;
+    }
+
       }
