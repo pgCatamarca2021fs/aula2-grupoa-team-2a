@@ -21,16 +21,10 @@
 
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-<<<<<<< HEAD
                 <div *ngIf="!logeado" class="nav-link circulo_profile" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><span class="iniciales">{{ponerIniciales(this.nombre)}}</span></div>
-                <ul class="dropdown-menu shadow dropdown-menu-end"  aria-labelledby="navbarDropdown">
-                    
+                <ul class="dropdown-menu shadow dropdown-menu-end"  aria-labelledby="navbarDropdown">    
                     <li><p class="dropdown-item">{{this.nombre}}</p></li>
-=======
-                <div *ngIf="!logeado" class="nav-link circulo_profile" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><span class="iniciales">JP</span></div>
-                <ul class="dropdown-menu dropdown-menu-end"  aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" [routerLink]="['/registro']" (click)="sendMessage()" >Editar mi Perfil</a></li>
->>>>>>> acf6c5ffece90ead1aee70237d324467a08941b4
                     <div class="dropdown-divider"></div>
                     <li><a class="dropdown-item" (click)="logout()">Cerrar Sesión</a></li>
                 </ul>
