@@ -133,7 +133,7 @@ namespace WebApplication1.Models
 
         }
 
-        public void EditarPersona(Persona persona)
+        public void EditarPersona(long IdUsuario, Persona persona)
         {
             using (SqlConnection connection = new SqlConnection(this.conectionString))
             {
@@ -142,8 +142,11 @@ namespace WebApplication1.Models
                 SqlCommand command = connection.CreateCommand();
                 command.CommandText = "editarPersona";
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@idUsuario", IdUsuario));
 
-                command.Parameters.Add(new SqlParameter("@idUsuario", persona.Id));
+                Console.WriteLine(IdUsuario);
+
+                //command.Parameters.Add(new SqlParameter("@idUsuario", persona.Id));
                 command.Parameters.Add(new SqlParameter("@cuil", persona.Cuil));
                 command.Parameters.Add(new SqlParameter("@nombre", persona.Nombre));
                 command.Parameters.Add(new SqlParameter("@fnac", persona.Fnac));

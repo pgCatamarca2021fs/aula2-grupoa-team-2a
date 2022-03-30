@@ -13,7 +13,10 @@ import { UsuarioModel } from 'src/app/models';
 })
 
 export class RegistroComponent implements OnInit {
-
+  //global
+  public datosUsuario : UsuarioModel = JSON.parse(localStorage.getItem('currentUser')!);
+  public idUser: number = 0;
+  //local
   listPersonas: any[] = [];
   usuarioEdit: any;
   usuario: any;
@@ -33,8 +36,6 @@ export class RegistroComponent implements OnInit {
         fecnac: ['', [Validators.required, Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/)]], //solo números con /
         telefono: ['', [Validators.required, Validators.pattern(/^\d[0-9]{9,14}$/)]], // 11 a 15 numeros.
         domicilio: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]{9,39}$/,)]], //minimo 10 max 40
-        cp: ['', [Validators.required, Validators.pattern(/^\d[0-9]{3}$/)]], //solo 5 numeros
-        ciudad: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]{3,14}$/,)]], //minimo 4 max 15
         provincia: ['', [Validators.required, Validators.nullValidator]],
         pais: ['Argentina',[Validators.required]],
         banco: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{3,39}$/,)]], // Letras, numeros, 4 a 40 caracteres
@@ -42,6 +43,7 @@ export class RegistroComponent implements OnInit {
         acepto: [false,Validators.requiredTrue]
       })
   }
+
   //Getters
   get Mail() { return this.form.get("mail"); }
   get Password() { return this.form.get("password"); }
@@ -50,9 +52,6 @@ export class RegistroComponent implements OnInit {
   get FecNac() { return this.form.get("fecnac"); }
   get Telefono() { return this.form.get("telefono"); }
   get Domicilio() { return this.form.get("domicilio"); }
-  //get Domicilio2() { return this.form.get("domicilio2"); }
-  get Cp() { return this.form.get("cp"); }
-  get Ciudad() { return this.form.get("ciudad"); }
   get Provincia() { return this.form.get("provincia"); }
   get Pais() { return this.form.get("pais")?.value; }
   get Banco() { return this.form.get("banco"); }
@@ -67,8 +66,6 @@ export class RegistroComponent implements OnInit {
   get FecnacValid() { return this.FecNac?.touched && !this.FecNac?.valid; }
   get TelefonoValid() { return this.Telefono?.touched && !this.Telefono?.valid; }
   get DomicilioValid() { return this.Domicilio?.touched && !this.Domicilio?.valid; }
-  get CpValid() { return this.Cp?.touched && !this.Cp?.valid; }
-  get CiudadValid() { return this.Ciudad?.touched && !this.Ciudad?.valid; }
   get ProvinciaValid() { return this.Provincia?.touched && !this.Provincia?.valid; }
   get BancoValid() { return this.Banco?.touched && !this.Banco?.valid; }
   get CbuValid() { return this.Cbu?.touched && !this.Cbu?.valid; }
@@ -92,7 +89,7 @@ export class RegistroComponent implements OnInit {
       cuil : this.form.get("cuil")?.value,
       nombre : this.form.get("nombre")?.value,
       fnac : this.form.get("fecnac")?.value,
-      domicilio : this.form.get("domicilio")?.value +", "+ this.form.get("domicilio2")?.value,
+      domicilio : this.form.get("domicilio")?.value,
       idProvincia : this.form.get("provincia")?.value,
       pais : this.form.get("pais")?.value,
       tipo : "1",
@@ -105,9 +102,6 @@ export class RegistroComponent implements OnInit {
       pass : this.form.get("password")?.value,
       mail : this.form.get("mail")?.value,
       telefono : this.form.get("telefono")?.value,
-      //domicilio2 : this.form.get("domicilio2")?.value,
-      //cp : this.form.get("cp")?.value,
-      //ciudad : this.form.get("ciudad")?.value,
       }
       if (this.form.valid && this.id == undefined)
       {
@@ -120,45 +114,41 @@ export class RegistroComponent implements OnInit {
         Swal.fire('Registro', 'ocurrió un error.', 'warning');
       })
     } else {
+      if (this.form.valid && this.id != undefined)
+      {
       console.log("enviando la modificacion al servidor ");
       this.personaService.modificarPersona(this.id, usuario).subscribe(data => {
       this.form.reset();
       this.accion = 'Agregar';
       this.id = undefined;
       Swal.fire('Registro', 'Datos Actualizados correctamente', 'success');
-    })
+      })
+    }
      //this.router.navigate(['/login'])
-
-    //this.persona.push(persona);
-    //alert('El usuario fue registrado correctamente!');
-    //this.form.reset();
-
   }
 }
 
-  editarPersona(id : number, usuario : any) {
-    this.accion = 'Editar';
-    this.id = this.usuarioEdit.id;
+  editarPersona() {
+
+    if (this.datosUsuario !== null) {
+      this.accion = 'Editar';
+      this.id = this.datosUsuario.Id;
 
     this.form.patchValue({
-      mail :this.usuarioEdit.mail,
-      pass : this.usuarioEdit.password,
-      cuil : this.usuarioEdit.cuil,
-      nombre : this.usuarioEdit.Nombre,
-      fnac : this.usuarioEdit.fnac,
-      telefono : this.usuarioEdit.telefono,
-      domicilio : this.usuarioEdit.domicilio,
-      //domicilio2 : this.usuarioEdit.domicilio2,
-      cp : this.usuarioEdit.cp,
-      ciudad : this.usuarioEdit.ciudad,
-      banco : this.usuarioEdit.banco,
-      cbu : this.usuarioEdit.cbu,
-      idProvincia : this.usuarioEdit.idProvincia
+      mail :this.datosUsuario.Mail,
+      password : this.datosUsuario.Pass,
+      cuil : this.datosUsuario.Cuil,
+      nombre : this.datosUsuario.Nombre,
+      fecnac : this.datosUsuario.Fnac,
+      telefono : this.datosUsuario.Telefono,
+      domicilio : this.datosUsuario.Domicilio,
+      provincia : this.datosUsuario.IdProvincia,
+      banco : this.datosUsuario.Banco,
+      cbu : this.datosUsuario.Cbu
 
-      //fechaAlta : new Date(),
-       //DniFrente: "1",
-      //DniDorso: "1",
     })
+
+    }
 
   }
   /*

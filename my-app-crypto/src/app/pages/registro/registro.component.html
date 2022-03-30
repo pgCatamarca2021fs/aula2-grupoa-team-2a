@@ -113,41 +113,8 @@
               </p>
             </div>
           </div>
-          <div class="col-sm-3">
-            <label for="IngresarDire2" class="form-label text-light">Mna/Lote/Dpto/Piso</label>
-            <input formControlName="domicilio2" maxlength="20" type="text" class="form-control" id="direccion2" placeholder="Opcional">
-          </div>
-          <div class="col-sm-3">
-            <label for="Ingresarcp" class="form-label text-light">CP:</label>
-            <input formControlName="cp" class="form-control" type="text" [class.border-danger]="CpValid"
-              class="form-control" id="cp" required>
-            <!--Respuesta en campo-->
-            <div *ngIf="Cp?.errors && Cp?.touched">
-              <p *ngIf="Cp?.hasError('required')" class="text-danger">
-                Ingrese CP.
-              </p>
-              <p *ngIf="Cp?.hasError('pattern')" class="text-danger">
-                Solo números (max 5).
-              </p>
-            </div>
-          </div>
-          <div class="col-sm-3">
-            <label for="IngresarCiudad" class="form-label text-light">Ciudad:</label>
-            <input formControlName="ciudad" maxlength="20" class="form-control" type="text" [class.border-danger]="CiudadValid"
-              class="form-control" id="ciudad" required>
-            <!--Respuesta en campo-->
-            <div *ngIf="Ciudad?.errors && Ciudad?.touched">
-              <p *ngIf="Ciudad?.hasError('required')" class="text-danger">
-                Ingrese Ciudad.
-              </p>
-              <p *ngIf="Ciudad?.hasError('pattern')" class="text-danger">
-                Debe contener al menos 4 caracteres.
-              </p>
-            </div>
-          </div>
-          <!--Cuarta Línea-->
           <!--Desplegable de Provincias-->
-          <div class="col-sm-5">
+          <div class="col-sm-4">
             <label for="IngresarProvincia" class="form-label text-light">Provincia:
             </label>
             <select formControlName="provincia" id="provincia" class="form-select" required>
@@ -187,11 +154,11 @@
               </p>
             </div>
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-2">
             <label for="lpaís" class="form-label text-light">País</label>
             <input formControlName="pais" type="text" class="form-control" id="pais" Value="Argentina" readonly>
           </div>
-          <!--Quinta Linea-->
+          <!--Cuarta Linea-->
           <div class="col-sm-3">
             <label for="Banco" class="form-label text-light">Banco:</label>
             <input formControlName="banco" maxlength="40" class="form-control" type="text" [class.border-danger]="BancoValid"
@@ -236,13 +203,14 @@
             <button [disabled]="this.form.invalid" type="submit" id="ingresar" class="btn btn-primary"><i
                 class="fas fa-database"></i>&nbsp;Registrar</button>
           </div>
-          <div class="col-sm-2">
+          <!--<div *ngIf="this.datosUsuario != null" class="col-sm-2">
             <br>
-            <button type="submit" id="Modificar"
+            <button [disabled]="this.form.valid" type="submit" id="Modificar" (click)="editarPersona()"
             class="btn btn-primary"><i class="fas fa-database"></i>&nbsp;Modificar</button>
-          <!--  <button [disabled]="this.form.invalid" type="submit" id="ingresar"
-            class="btn btn-primary"><i class="fas fa-database"></i>&nbsp;Eliminar</button>-->
           </div>
+          <!--  <button [disabled]="this.form.invalid" type="submit" id="ingresar"
+            class="btn btn-primary"><i class="fas fa-database"></i>&nbsp;Eliminar</button>
+          </div>-->
         </form>
       </div>
     </div>

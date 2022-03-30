@@ -38,19 +38,8 @@ namespace WebApplication1.Controllers
         public void Put(long Id, [FromBody] Persona persona)
         {
             GestorPersona gestor = new GestorPersona();
-            gestor.EditarPersona(persona);
-
-            /*Persona usuario = new Persona();
-            if (usuario.Id == id)
-            {
-                GestorPersona gestor = new GestorPersona();
-                gestor.EditarPersona(persona);
-            } else {
-                Ok(new { message = "no encontrado" });
-            }*/
-
-
-            //gestor.EditarPersona(value);
+            gestor.EditarPersona(Id, persona);
+           
         }
 
         // DELETE api/<controller>/5
