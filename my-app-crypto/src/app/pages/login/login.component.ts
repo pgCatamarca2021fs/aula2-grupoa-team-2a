@@ -53,10 +53,6 @@ export class LoginComponent implements OnInit {
 
     if (this.idUser > 0) {
       this.router.navigate(['/dashboard']);
-      console.log("Ingresa" + this.idUser)
-    }
-    else {
-      console.log("NO Ingresa" + this.idUser)
     }
 
   }

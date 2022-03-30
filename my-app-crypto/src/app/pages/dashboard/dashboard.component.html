@@ -36,7 +36,7 @@
                   <tbody>
                     <tr *ngFor="let item of saldos">
                       <td *ngIf="this.item.Nombre !=='ARS'">{{item.Nombre}}</td>
-                      <td *ngIf="this.item.Nombre !== 'ARS'">{{item.Saldo | currency:'':''}}</td>
+                      <td *ngIf="this.item.Nombre !== 'ARS'">{{item.Saldo}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -70,12 +70,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of movimientos.slice(-4)">
-                  <td>{{item.Fecha| date: 'short'}}</td>
+                <tr *ngFor="let item of movimientos.slice(-4).reverse()">
+                  <td>{{item.Fecha | date:'dd/MM/yy HH:mm':'-06:00'}}</td>
                   <td *ngIf="this.item.MonedaDest=='ARS'">Deposito en Cuenta</td>
                   <td *ngIf="this.item.MonedaDest!=='ARS'">Compra</td>
                   <td>{{item.MonedaDest}}</td>
-                  <td>{{item.ImpoDestino| currency:'':''}}</td>
+                  <td>{{item.ImpoDestino}}</td>
                 </tr>
               </tbody>
             </table>
