@@ -92,6 +92,7 @@ namespace WebApplication1.Models
                 persona.Pass = dataReader.GetString(14);
                 persona.Mail = dataReader.GetString(15);
                 persona.Telefono = dataReader.GetString(16);
+                persona.IdCuenta = dataReader.GetInt64(17);
 
                 //listaId.Add(persona);
                 return persona;

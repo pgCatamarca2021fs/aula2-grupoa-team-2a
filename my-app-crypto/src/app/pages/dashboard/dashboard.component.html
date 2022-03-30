@@ -34,9 +34,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let saldos of saldos">
-                      <td *ngIf="this.saldos.Nombre !=='ARS'">{{saldos.Nombre}}</td>
-                      <td *ngIf="this.saldos.Nombre !== 'ARS'">{{saldos.Saldo | currency:'':''}}</td>
+                    <tr *ngFor="let item of saldos">
+                      <td *ngIf="this.item.Nombre !=='ARS'">{{item.Nombre}}</td>
+                      <td *ngIf="this.item.Nombre !== 'ARS'">{{item.Saldo | currency:'':''}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -63,25 +63,19 @@
             <table class="table table-hover">
               <thead>
                 <tr>
+                  <th scope="col">Fecha</th>
                   <th scope="col">Operación</th>
-                  <th scope="col">Crypto</th>
+                  <th scope="col">Moneda</th>
                   <th scope="col">Monto</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Compra</td>
-                  <td>Bitcoin</td>
-                  <td>0.00112179</td>
-                </tr>
-                <tr>
-                  <td>Venta</td>
-                  <td>Ethereum</td>
-                  <td>0.01466552</td>
-                </tr>
-                <tr>
-                  <td colspan="2">Carga Billetera</td>
-                  <td>$30000</td>
+                <tr *ngFor="let item of movimientos.slice(-4)">
+                  <td>{{item.Fecha| date: 'short'}}</td>
+                  <td *ngIf="this.item.MonedaDest=='ARS'">Deposito en Cuenta</td>
+                  <td *ngIf="this.item.MonedaDest!=='ARS'">Compra</td>
+                  <td>{{item.MonedaDest}}</td>
+                  <td>{{item.ImpoDestino| currency:'':''}}</td>
                 </tr>
               </tbody>
             </table>

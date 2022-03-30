@@ -26,6 +26,7 @@ namespace WebApplication1.Models
         private string pass;
         private string mail;
         private string telefono;
+        private long idCuenta;
 
         //Propiedades Getters y Setters
         public long Id { get => id; set => id = value; }
@@ -45,12 +46,12 @@ namespace WebApplication1.Models
         public string Pass { get => pass; set => pass = value; }
         public string Mail { get => mail; set => mail = value; }
         public string Telefono { get => telefono; set => telefono = value; }
-
+        public long IdCuenta{ get => idCuenta; set => idCuenta = value; }
 
         // Constructores
         public Persona(long id, string nombre, string cuil, DateTime fnac, string domicilio, int idProvincia
         , string pais, string tipo, string estado, DateTime fechaAlta, string cbu, string banco, string dniFrente
-        , string dniDorso, string pass, string mail, string telefono)
+        , string dniDorso, string pass, string mail, string telefono, long idCuenta)
         {
             this.id = id;
             this.cuil = cuil;
@@ -69,6 +70,7 @@ namespace WebApplication1.Models
             this.pass = pass;
             this.mail = mail;
             this.telefono = telefono; ;
+            this.idCuenta = idCuenta;
         }
 
         // Métodos
