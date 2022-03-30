@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioModel } from 'src/app/models';
 
@@ -11,13 +11,21 @@ import { UsuarioModel } from 'src/app/models';
 
 export class HeaderComponent implements OnInit {
 
-  
+message: string = 'editarPersona()';
+
+@Output() messageEnvent = new EventEmitter<string>();
+
+
   public logeado : boolean = true;
   public datosUsuario : UsuarioModel = JSON.parse(localStorage.getItem('currentUser')!);
   public idCuenta: number = 0;
   public nombre: any;
 
   constructor(private router: Router) {}
+
+  sendMessage() {
+    this.messageEnvent.emit(this.message);
+  }
 
 
   ngOnInit(): void {
@@ -34,7 +42,7 @@ export class HeaderComponent implements OnInit {
     if (this.idCuenta == 0) {
       this.router.navigate(['/home']);
     }
-    
+
 }
 
 logout(): void {
@@ -49,5 +57,5 @@ ponerIniciales(nameString: string) {
   return initials.toUpperCase();
 }
 
-  
+
 }

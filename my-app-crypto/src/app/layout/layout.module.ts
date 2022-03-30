@@ -6,6 +6,7 @@ import { AppRoutingModule } from '../app-routing.module';
 
 
 
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -13,7 +14,7 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
 exports: [HeaderComponent, FooterComponent]
 
