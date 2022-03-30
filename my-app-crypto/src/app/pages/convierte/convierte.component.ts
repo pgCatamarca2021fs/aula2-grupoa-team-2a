@@ -9,6 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { DataChartService } from 'src/app/services/data-chart.service';
 import { AlertasService } from 'src/app/services/alertas.service';
 import Swal from 'sweetalert2';
+import { UsuarioModel } from 'src/app/models';
 
 
 
@@ -44,6 +45,8 @@ export class ConvierteComponent implements OnInit {
   movi: any = [];
   form: FormGroup;
 
+  public datosUsuario : UsuarioModel = JSON.parse(localStorage.getItem('currentUser')!);
+  public idCuenta: number = 0;
 
   constructor(private Apiservice: ApiService, private fb: FormBuilder, private cotizacionDolar: DataChartService) {
     this.form = this.fb.group({
@@ -61,7 +64,9 @@ export class ConvierteComponent implements OnInit {
 
   ngOnInit() {
 
-
+    if (this.datosUsuario !== null){
+      this.idCuenta=this.datosUsuario.IdCuenta;
+    }
 
     this.Apiservice.obtenerCripto().subscribe(respuesta => { this.criptos = respuesta; });
     this.cotizacionDolar.cotizacionDolar().subscribe(resp => { this.dolaroficial = resp.totalAsk; this.form.controls['cotizacion'].setValue(this.dolaroficial); });
@@ -80,7 +85,7 @@ export class ConvierteComponent implements OnInit {
   altaMovimiento() {
     console.log(this.form);
     const movimiento: any = {
-      idcuenta: 5,
+      idcuenta: this.idCuenta,
       idMonedaOrigen: this.form.get('idMonedaOrigen')?.value,
       impoOrigen: this.form.get('importeOrigen')?.value,
       saldoDisponible: this.form.get('saldoDisponible')?.value,
