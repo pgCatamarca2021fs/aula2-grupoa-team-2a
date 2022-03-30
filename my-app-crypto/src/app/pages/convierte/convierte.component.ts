@@ -9,6 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { DataChartService } from 'src/app/services/data-chart.service';
 import { AlertasService } from 'src/app/services/alertas.service';
 import Swal from 'sweetalert2';
+import { UsuarioModel } from 'src/app/models';
 
 
 
@@ -44,6 +45,8 @@ export class ConvierteComponent implements OnInit {
   movi: any = [];
   form: FormGroup;
 
+  public datosUsuario : UsuarioModel = JSON.parse(localStorage.getItem('currentUser')!);
+  public idCuenta: number = 0;
 
   constructor(private Apiservice: ApiService, private fb: FormBuilder, private cotizacionDolar: DataChartService) {
     this.form = this.fb.group({
@@ -61,7 +64,9 @@ export class ConvierteComponent implements OnInit {
 
   ngOnInit() {
 
-
+    if (this.datosUsuario !== null){
+      this.idCuenta=this.datosUsuario.IdCuenta;
+    }
 
     this.Apiservice.obtenerCripto().subscribe(respuesta => { this.criptos = respuesta; });
     this.cotizacionDolar.cotizacionDolar().subscribe(resp => { this.dolaroficial = resp.totalAsk; this.form.controls['cotizacion'].setValue(this.dolaroficial); });
@@ -80,7 +85,7 @@ export class ConvierteComponent implements OnInit {
   altaMovimiento() {
     console.log(this.form);
     const movimiento: any = {
-      idcuenta: 5,
+      idcuenta: this.idCuenta,
       idMonedaOrigen: this.form.get('idMonedaOrigen')?.value,
       impoOrigen: this.form.get('importeOrigen')?.value,
       saldoDisponible: this.form.get('saldoDisponible')?.value,
@@ -93,14 +98,16 @@ export class ConvierteComponent implements OnInit {
     console.log(this.form.value);
     //this.toastr.success('Hello world!', 'Toastr fun!');
 
-    this.Apiservice.agregarMovimiento(movimiento).subscribe(alta => { this.movi = alta; })
+    this.Apiservice.agregarMovimiento(movimiento).subscribe(alta => { this.movi = alta; 
+    Swal.fire('Exito', 'La operación se realizo exitosamente.', 'success');
+    })
     this.form.reset();
   }
 
   verSaldo(idCuenta: number, moneda: string) {
     console.log('idmoneda:' + moneda.substring(3));
     this.form.controls['idMonedaOrigen'].setValue(moneda.substring(3));
-    return this.Apiservice.consultarSaldo(idCuenta, moneda.substring(0, 3)).subscribe(respuestaSaldo => { this.saldis = respuestaSaldo; this.form.controls['saldoDisponible'].setValue(this.saldis.Importe); if (this.saldis.Importe == 0) { Swal.fire('Atencion', 'No cuenta con saldo en la billereta seleccionada para efecturar operaciones', 'warning'); } });
+    return this.Apiservice.consultarSaldo(this.idCuenta, moneda.substring(0, 3)).subscribe(respuestaSaldo => { this.saldis = respuestaSaldo; this.form.controls['saldoDisponible'].setValue(this.saldis.Importe); if (this.saldis.Importe == 0) { Swal.fire('Atencion', 'No cuenta con saldo en la billereta seleccionada para efecturar operaciones', 'warning'); } });
 
 
   }

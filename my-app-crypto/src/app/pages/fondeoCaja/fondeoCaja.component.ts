@@ -5,8 +5,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 //import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { DataChartService } from 'src/app/services/data-chart.service';
-
-
+import { UsuarioModel } from 'src/app/models';
+import Swal from 'sweetalert2';
 
 //import { ToastrService } from 'ngx-toastr';
 
@@ -18,7 +18,7 @@ import { DataChartService } from 'src/app/services/data-chart.service';
 })
 export class FondeoCajaComponent implements OnInit {
 
-  criptos:any = [];
+criptos:any = [];
  dolaroficial:any;
  cripto: any=[];
  public saldis: any=[];
@@ -35,6 +35,8 @@ export class FondeoCajaComponent implements OnInit {
 movi: any=[];
 form1: FormGroup;
 
+public datosUsuario : UsuarioModel = JSON.parse(localStorage.getItem('currentUser')!);
+public idCuenta: number = 0;
 
 
 constructor(private Apiservice:ApiService, private fb:FormBuilder, private cotizacionDolar: DataChartService) { 
@@ -48,17 +50,21 @@ constructor(private Apiservice:ApiService, private fb:FormBuilder, private cotiz
 }
 
   ngOnInit() {
+    if (this.datosUsuario !== null){
+      this.idCuenta=this.datosUsuario.IdCuenta;
+      
+    }
   }
 
   altaDeposito() {
-    console.log(this.form1);
+    console.log(this.idCuenta);
      const movimiento: any = {
-      idcuenta:5,
-      idMonedaOrigen:1007,
+      idcuenta : this.idCuenta,
+      idMonedaOrigen:12,
       impoOrigen:0,
       saldoDisponible:0,
       cotizacion:0,
-      idMonedaDestino:1007,
+      idMonedaDestino:12,
       impoDestino:this.form1.get('impoDestino')?.value,
       fecha:new Date(),
       estado:1
@@ -66,9 +72,18 @@ constructor(private Apiservice:ApiService, private fb:FormBuilder, private cotiz
   console.log(this.form1.value);
      //this.toastr.success('Hello world!', 'Toastr fun!');
      
-       this.Apiservice.agregarMovimiento(movimiento).subscribe(alta => {this.movi=alta;});
+  if (this.form1.get('impoDestino')?.value > 0)
+  {
+       this.Apiservice.agregarMovimiento(movimiento).subscribe(alta => {this.movi=alta;
+        Swal.fire('Exito', 'La operación se realizo exitosamente.', 'success');
+      });
        this.form1.reset(); 
-     
+      }
+  else {
+    Swal.fire('Error', 'El importe no es correcto', 'error');
+  }
+
+
    }
 
 

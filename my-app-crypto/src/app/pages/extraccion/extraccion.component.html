@@ -1,47 +1,41 @@
 <main class="dashboard">
-     
-    
-
 
 
   <div class="container">
-      <div class="abs-center">
-        <div class="row align-items-start"> 
-         <div class="col-5">
-           <div class="card">
-            <form [formGroup]="form1" (ngSubmit)="altaExtraccion()" class="border p-3 form bg-light">
-               
-              <h2 class="text-center">Extraccion de Fondos</h2>
-                  <ul class="list-group d-flex align-items-center">
-                  
-                  <li>Saldo de Cuenta en Pesos Argentinos</li>
-                  <li><input  type="text"  id="saldoDisponible" formControlName="saldoDisponible" value="{{saldis.Importe |currency }}" readonly  class="form-control" aria-label="Text input with dropdown button"  ></li>
-                  
-                  </ul>
-                  <ul class="list-group d-flex align-items-center">
-                    <li> Ingrese el Importe en Pesos a Extraer </li>
-                    <li><input  type="text"  id="impoOrigen" formControlName="impoOrigen" class="form-control"  aria-label="Text input with dropdown button" placeholder="$" ></li>
-                  </ul>  
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary py-2 mt-4" id="btn1">Confirmar</button>
-                    <button type="submit" routerLink="/dashboard" class="btn btn-outline-secondary   py-2 mt-4">Cancelar</button>
-                  </div>
-                 
-            </form> 
-             
-           </div>
-         </div> 
-         <div class="col-7 ml-10">
-           <div class="card">
-             
-           </div>
-         </div>
+    <div class="abs-center">
 
+      <form [formGroup]="form1" (ngSubmit)="altaExtraccion()" class="border p-3 form bg-light">
+
+        <h2 class="text-center">Extraccion de Fondos</h2>
+        <ul class="list-group d-flex align-items-center">
+
+          <li>Saldo de Cuenta en Pesos Argentinos</li>
+          <li><input type="text" id="saldoDisponible" formControlName="saldoDisponible"
+              value="{{saldis.Importe |currency }}" readonly class="form-control"
+              aria-label="Text input with dropdown button"></li>
+
+        </ul>
+        <ul class="list-group d-flex align-items-center">
+          <li> Ingrese el Importe en Pesos a Extraer </li>
+          <li><input type="text" id="impoOrigen" formControlName="impoOrigen" class="form-control"
+              aria-label="Text input with dropdown button" placeholder="$"></li>
+        </ul>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary m-1 mt-2" id="btn1">Cambiar</button>
+          <button type="submit" class="btn btn-outline-secondary m-1 mt-2" routerLink="/dashboard">Cancelar</button>
         </div>
 
-        
-      </div>
+      </form>
+
+
+
+
+
     </div>
 
 
-  </main>
+  </div>
+  
+
+
+</main>

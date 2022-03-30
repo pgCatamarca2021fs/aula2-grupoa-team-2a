@@ -1,11 +1,10 @@
 <main class="dashboard">
-<h3 class="text-center text-light">Cotizaciones de criptomonedas</h3>
-  <div class="container ">
-      <h4 class="text-center text-light">Convertir</h4>
-      <h6 class="text-center text-light">Convertí el monto que deseas a una moneda diferente.</h6>
-          <div class="abs-center ">
+  <div class="container">
+          <div class="abs-center py-4">
             <form [formGroup]="form" (ngSubmit)="altaMovimiento()" class="border p-3 form bg-light" >
 
+              <h2 class="text-center">Convertí el monto que deseas a una moneda diferente.</h2>
+              <h4 class="text-center">Convertí el monto que deseas a una moneda diferente.</h4>
 
               <div class="form-group mt-2 border border-info border-3 p-2 rounded ">
 
@@ -57,8 +56,8 @@
               </div>
 
                <div class="form-group">
-              <button type="submit" class="btn btn-primary py-2 mt-4" id="btn1">Cambiar</button>
-              <button type="submit" class="btn btn-outline-secondary   py-2 mt-4">Cancelar</button>
+              <button type="submit" class="btn btn-primary m-1 mt-2" id="btn1">Cambiar</button>
+              <button type="submit" class="btn btn-outline-secondary m-1 mt-2" routerLink="/dashboard">Cancelar</button>
                </div>
             </form>
           </div>

@@ -112,6 +112,7 @@ export class RegistroComponent implements OnInit {
        this.personaService.insertarPersona(usuario).subscribe(data => {
        Swal.fire('Agregar Registro', 'Datos guardados correctamente', 'success');
        this.form.reset();
+       this.router.navigate(['/login'])
       }, error => {
         Swal.fire('Agregar Registro', 'ocurrió un error.', 'warning');
       })
