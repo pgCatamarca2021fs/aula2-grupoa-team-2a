@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { DataChartService } from 'src/app/services/data-chart.service';
 import Swal from 'sweetalert2';
+import { UsuarioModel } from 'src/app/models';
 
 @Component({
   selector: 'app-extraccion',
@@ -29,7 +30,11 @@ export class ExtraccionComponent implements OnInit {
   error: any;
   euro: any = [];
   movi: any=[];
-form1: FormGroup;
+  form1: FormGroup;
+
+public datosUsuario : UsuarioModel = JSON.parse(localStorage.getItem('currentUser')!);
+  public idCuenta: number = 0;
+
 
   constructor(private Apiservice:ApiService, private fb:FormBuilder, private cotizacionDolar: DataChartService) {
     this.form1=this.fb.group({
@@ -44,7 +49,11 @@ form1: FormGroup;
 
   ngOnInit() {
 
-    this.Apiservice.consultarSaldo(5, 'ARS').subscribe(respuestaSaldo => { this.saldis = respuestaSaldo; this.form1.controls['saldoDisponible'].setValue(this.saldis.Importe);  });
+    if (this.datosUsuario !== null){
+      this.idCuenta=this.datosUsuario.IdCuenta;
+    }
+
+    this.Apiservice.consultarSaldo(this.idCuenta, 'ARS').subscribe(respuestaSaldo => { this.saldis = respuestaSaldo; this.form1.controls['saldoDisponible'].setValue(this.saldis.Importe);  });
 
   }
 
@@ -55,12 +64,12 @@ form1: FormGroup;
     if (this.saldis.Importe>=this.form1.get('impoOrigen')?.value ) {
       console.log(this.form1);
        const movimiento: any = {
-        idcuenta:5,
-        idMonedaOrigen:1007,
+        idcuenta:this.idCuenta,
+        idMonedaOrigen:12,
         impoOrigen:this.form1.get('impoOrigen')?.value,
         saldoDisponible:0,
         cotizacion:0,
-        idMonedaDestino:1007,
+        idMonedaDestino:12,
         impoDestino:0,
         fecha:new Date(),
         estado:1
