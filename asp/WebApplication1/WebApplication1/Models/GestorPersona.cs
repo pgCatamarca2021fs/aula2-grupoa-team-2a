@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 
 namespace WebApplication1.Models
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class GestorPersona
     {
         string conectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();

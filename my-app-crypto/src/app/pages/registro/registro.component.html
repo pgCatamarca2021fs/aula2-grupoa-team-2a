@@ -3,7 +3,7 @@
   <div class="d-flex justify-content-end" style="padding: 10px;">
     <div class="fondo_card_registro">
       <div class="card-body bg-dark">
-        <h3 class="card-text text-light estilo_titulo">{{ accion }} Usuario</h3>
+        <h3 class="card-text text-light estilo_titulo">{{ accion }} Registro</h3>
         <form [formGroup]="form" (ngSubmit)="guardarPersona()" action="" class="Formulario row g-2 bg-dark" metod="POST"
           id="form_registro" #f="ngForm">
           <!---->
@@ -86,7 +86,7 @@
           </div>
           <div class="col-sm-4">
             <label for="Ingresartelefono" class="form-label text-light">Teléfono:</label>
-            <input formControlName="telefono" maxlength="30" class="form-control" type="text" [class.border-danger]="TelefonoValid"
+            <input formControlName="telefono" maxlength="12" class="form-control" type="text" [class.border-danger]="TelefonoValid"
               class="form-control" id="telefono" required>
             <!--Respuesta en pantalla-->
             <div *ngIf="Telefono?.errors && Telefono?.touched">
@@ -203,7 +203,7 @@
             <button [disabled]="this.form.invalid" type="submit" id="ingresar" class="btn btn-primary"><i
                 class="fas fa-database"></i>&nbsp;Registrar</button>
           </div>
-          <!--<div *ngIf="this.datosUsuario != null" class="col-sm-2">
+          <div *ngIf="this.datosUsuario != null" class="col-sm-2">
             <br>
             <button [disabled]="this.form.valid" type="submit" id="Modificar" (click)="editarPersona()"
             class="btn btn-primary"><i class="fas fa-database"></i>&nbsp;Modificar</button>

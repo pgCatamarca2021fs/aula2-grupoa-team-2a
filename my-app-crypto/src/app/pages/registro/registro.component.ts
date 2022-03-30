@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PersonaService } from 'src/app/services/persona.service';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UsuarioModel } from 'src/app/models';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class RegistroComponent implements OnInit {
   //global
   public datosUsuario : UsuarioModel = JSON.parse(localStorage.getItem('currentUser')!);
   public idUser: number = 0;
-  //local
+   //local
   listPersonas: any[] = [];
   usuarioEdit: any;
   usuario: any;
@@ -25,7 +26,8 @@ export class RegistroComponent implements OnInit {
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-    private personaService: PersonaService) {
+    private personaService: PersonaService,
+    private router: Router) {
     this.form = this.formBuilder.group(
       { //   /^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/    dd-mm-yyyy
         //   /^\d{4}([\-/.])(0?[1-9]|1[1-2])\1(3[01]|[12][0-9]|0?[1-9])$/    yyyy-mm-dd
@@ -35,7 +37,7 @@ export class RegistroComponent implements OnInit {
         nombre: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]{10,40}$/,)]],  // Letras y espacios, pueden llevar acentos.
         fecnac: ['', [Validators.required, Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/)]], //solo números con /
         telefono: ['', [Validators.required, Validators.pattern(/^\d[0-9]{9,14}$/)]], // 11 a 15 numeros.
-        domicilio: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]{9,39}$/,)]], //minimo 10 max 40
+        domicilio: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9\_\-]{40}$/,)]], // Letras, numeros, guion y guion_bajo, 8 a 20 caracteres 10 max 40
         provincia: ['', [Validators.required, Validators.nullValidator]],
         pais: ['Argentina',[Validators.required]],
         banco: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{3,39}$/,)]], // Letras, numeros, 4 a 40 caracteres
@@ -108,10 +110,10 @@ export class RegistroComponent implements OnInit {
        console.log("enviando al servidor");
        console.log(usuario);
        this.personaService.insertarPersona(usuario).subscribe(data => {
-       Swal.fire('Registro', 'Datos guardados correctamente', 'success');
+       Swal.fire('Agregar Registro', 'Datos guardados correctamente', 'success');
        this.form.reset();
       }, error => {
-        Swal.fire('Registro', 'ocurrió un error.', 'warning');
+        Swal.fire('Agregar Registro', 'ocurrió un error.', 'warning');
       })
     } else {
       if (this.form.valid && this.id != undefined)
@@ -121,10 +123,11 @@ export class RegistroComponent implements OnInit {
       this.form.reset();
       this.accion = 'Agregar';
       this.id = undefined;
-      Swal.fire('Registro', 'Datos Actualizados correctamente', 'success');
+      Swal.fire('Editar Registro', 'Datos Actualizados correctamente', 'success');
+      this.router.navigate(['/dashboard']);
       })
     }
-     //this.router.navigate(['/login'])
+
   }
 }
 

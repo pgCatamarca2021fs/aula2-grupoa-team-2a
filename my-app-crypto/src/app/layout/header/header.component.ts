@@ -11,9 +11,9 @@ import { UsuarioModel } from 'src/app/models';
 
 export class HeaderComponent implements OnInit {
 
+//envio mensaje a registro
 message: string = 'editarPersona()';
-
-@Output() messageEnvent = new EventEmitter<string>();
+@Output() mensaje = new EventEmitter<string>();
 
 
   public logeado : boolean = true;
@@ -23,9 +23,11 @@ message: string = 'editarPersona()';
 
   constructor(private router: Router) {}
 
-  sendMessage() {
-    this.messageEnvent.emit(this.message);
+ enviarMensaje() {
+    this.mensaje.emit(this.message);
+    console.log(this.message);
   }
+
 
 
   ngOnInit(): void {

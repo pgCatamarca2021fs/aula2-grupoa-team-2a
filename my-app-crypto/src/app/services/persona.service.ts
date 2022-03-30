@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable} from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 import { UsuarioModel } from '../models';
 
 
@@ -12,6 +12,7 @@ import { UsuarioModel } from '../models';
 
 export class PersonaService {
 
+  private persona$ = new Subject<any>();
   private myAppCriptoUrl = 'https://localhost:44336/';
   private myApiUrl = 'api/Persona';
 
@@ -37,8 +38,10 @@ export class PersonaService {
     return this.http.post(this.myAppCriptoUrl + this.myApiUrl, usuario);
   }
   modificarPersona(id: number, usuario: any):Observable<any>{
-     return this.http.put(this.myAppCriptoUrl + this.myApiUrl + id, usuario);
+     return this.http.put(this.myAppCriptoUrl + this.myApiUrl +"?&id="+ id, usuario);
+                                                             //?&id=30025
   }
+
   eliminarPersona(id: number):Observable<any>{
      return this.http.delete(this.myAppCriptoUrl + this.myApiUrl + id);
   }
