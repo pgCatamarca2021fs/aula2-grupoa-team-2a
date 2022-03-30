@@ -77,8 +77,14 @@ public datosUsuario : UsuarioModel = JSON.parse(localStorage.getItem('currentUse
     console.log(this.form1.value);
        //this.toastr.success('Hello world!', 'Toastr fun!');
        
+       if (this.form1.get('impoOrigen')?.value > 0)
+        {
          this.Apiservice.agregarMovimiento(movimiento).subscribe(alta => {this.movi=alta;   Swal.fire('Correcto', 'La Operacion se realizo Exitosamente', 'info');  });
-         this.form1.reset(); 
+         this.form1.reset();}
+
+         else {
+          Swal.fire('Error', 'El importe no es correcto', 'error');
+        }
 
   } else {
     this.form1.controls['impoOrigen'].setValue('0');

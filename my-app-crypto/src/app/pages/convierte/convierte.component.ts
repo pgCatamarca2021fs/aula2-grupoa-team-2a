@@ -98,14 +98,16 @@ export class ConvierteComponent implements OnInit {
     console.log(this.form.value);
     //this.toastr.success('Hello world!', 'Toastr fun!');
 
-    this.Apiservice.agregarMovimiento(movimiento).subscribe(alta => { this.movi = alta; })
+    this.Apiservice.agregarMovimiento(movimiento).subscribe(alta => { this.movi = alta; 
+    Swal.fire('Exito', 'La operación se realizo exitosamente.', 'success');
+    })
     this.form.reset();
   }
 
   verSaldo(idCuenta: number, moneda: string) {
     console.log('idmoneda:' + moneda.substring(3));
     this.form.controls['idMonedaOrigen'].setValue(moneda.substring(3));
-    return this.Apiservice.consultarSaldo(idCuenta, moneda.substring(0, 3)).subscribe(respuestaSaldo => { this.saldis = respuestaSaldo; this.form.controls['saldoDisponible'].setValue(this.saldis.Importe); if (this.saldis.Importe == 0) { Swal.fire('Atencion', 'No cuenta con saldo en la billereta seleccionada para efecturar operaciones', 'warning'); } });
+    return this.Apiservice.consultarSaldo(this.idCuenta, moneda.substring(0, 3)).subscribe(respuestaSaldo => { this.saldis = respuestaSaldo; this.form.controls['saldoDisponible'].setValue(this.saldis.Importe); if (this.saldis.Importe == 0) { Swal.fire('Atencion', 'No cuenta con saldo en la billereta seleccionada para efecturar operaciones', 'warning'); } });
 
 
   }

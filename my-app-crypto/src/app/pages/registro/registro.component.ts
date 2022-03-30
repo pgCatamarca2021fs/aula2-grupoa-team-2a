@@ -25,6 +25,7 @@ export class RegistroComponent implements OnInit {
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
+    private router: Router,
     private personaService: PersonaService) {
     this.form = this.formBuilder.group(
       { //   /^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/    dd-mm-yyyy
@@ -110,6 +111,7 @@ export class RegistroComponent implements OnInit {
        this.personaService.insertarPersona(usuario).subscribe(data => {
        Swal.fire('Registro', 'Datos guardados correctamente', 'success');
        this.form.reset();
+       this.router.navigate(['/login'])
       }, error => {
         Swal.fire('Registro', 'ocurrió un error.', 'warning');
       })

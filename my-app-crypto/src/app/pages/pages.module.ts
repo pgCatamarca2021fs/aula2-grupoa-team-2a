@@ -10,7 +10,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { FondeoCajaComponent } from './fondeoCaja/fondeoCaja.component';
 import { ConvierteComponent } from './convierte/convierte.component';
+import { ExtraccionComponent } from './extraccion/extraccion.component';
 import { BrowserModule } from '@angular/platform-browser';
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule }  from '@angular/material/datepicker';
@@ -27,6 +29,7 @@ import { LayoutModule } from '../layout/layout.module';
     RegistroComponent,
     ConvierteComponent,
     FondeoCajaComponent,
+    ExtraccionComponent
 
   ],
   imports: [

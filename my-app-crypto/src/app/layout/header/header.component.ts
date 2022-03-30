@@ -20,6 +20,7 @@ message: string = 'editarPersona()';
   public datosUsuario : UsuarioModel = JSON.parse(localStorage.getItem('currentUser')!);
   public idCuenta: number = 0;
   public nombre: any;
+  public botondashboard: boolean = true;
 
   constructor(private router: Router) {}
 

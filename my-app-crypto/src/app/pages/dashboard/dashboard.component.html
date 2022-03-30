@@ -20,7 +20,7 @@
                     <a routerLink="/fondeo" class="btn btn-outline-secondary btn-sm">Ingresar $AR</a>
                   </div>
                   <div class="px-3 py-2">
-                    <a routerLink="/fondeo" class="btn btn-outline-secondary btn-sm">Retirar $AR</a>
+                    <a routerLink="/extraccion" class="btn btn-outline-secondary btn-sm">Retirar $AR</a>
                   </div>
                 </div>
               </div>
@@ -72,9 +72,11 @@
               <tbody>
                 <tr *ngFor="let item of movimientos.slice(-4).reverse()">
                   <td>{{item.Fecha | date:'dd/MM/yy HH:mm':'-06:00'}}</td>
-                  <td>{{mensajeMovimientos(item.MonedaOrigen, item.MonedaDest)}}</td>
-                  <!-- <td>{{item.MonedaDest}}</td> -->
-                  <td>{{item.ImpoDestino}}</td>
+                  <td>{{mensajeMovimientos(item.MonedaOrigen, item.MonedaDest, item.ImpoOrigen)}}</td>
+                  <td>{{montoMovimientos(item.ImpoOrigen, item.ImpoDestino)}}</td>
+                  <!-- <td *ngIf="item.ImpoOrigen > 0">{{item.ImpoOrigen}}</td>
+                  <td *ngIf="item.ImpoDestino > 0">{{item.ImpoDestino}}</td>
+                  <td *ngIf="(item.ImpoDestino > 0 && item.ImpoOrigen > 0)">{{item.ImpoDestino}}</td> -->
                 </tr>
               </tbody>
             </table>
