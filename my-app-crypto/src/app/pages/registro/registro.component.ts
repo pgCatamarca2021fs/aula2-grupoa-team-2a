@@ -37,7 +37,7 @@ export class RegistroComponent implements OnInit {
         nombre: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]{10,40}$/,)]],  // Letras y espacios, pueden llevar acentos.
         fecnac: ['', [Validators.required, Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/)]], //solo números con /
         telefono: ['', [Validators.required, Validators.pattern(/^\d[0-9]{9,14}$/)]], // 11 a 15 numeros.
-        domicilio: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9\_\-]{40}$/,)]], // Letras, numeros, guion y guion_bajo, 8 a 20 caracteres 10 max 40
+        domicilio: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ0-9\s]{10,40}$/,)]], // Letras, numeros, guion y guion_bajo, 8 a 20 caracteres 10 max 40
         provincia: ['', [Validators.required, Validators.nullValidator]],
         pais: ['Argentina',[Validators.required]],
         banco: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{3,39}$/,)]], // Letras, numeros, 4 a 40 caracteres
