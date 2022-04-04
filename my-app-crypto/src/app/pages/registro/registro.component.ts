@@ -78,11 +78,10 @@ export class RegistroComponent implements OnInit {
 
   obtenerPersona() {
     this.personaService.obtenerPersona().subscribe(data => {
-      console.log(data);
       this.usuarioEdit = data;
       this.listPersonas = data;
     }, error => {
-      console.log(error);
+      //console.log(error);
     });
   }
 
@@ -107,8 +106,6 @@ export class RegistroComponent implements OnInit {
       }
       if (this.form.valid && this.id == undefined)
       {
-       console.log("enviando al servidor");
-       console.log(usuario);
        this.personaService.insertarPersona(usuario).subscribe(data => {
        Swal.fire('Agregar Registro', 'Datos guardados correctamente', 'success');
        this.form.reset();
@@ -119,7 +116,6 @@ export class RegistroComponent implements OnInit {
     } else {
       if (this.form.valid && this.id != undefined)
       {
-      console.log("enviando la modificacion al servidor ");
       this.personaService.modificarPersona(this.id, usuario).subscribe(data => {
       this.form.reset();
       this.accion = 'Agregar';
