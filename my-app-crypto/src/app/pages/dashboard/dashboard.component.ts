@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit{
 
   public datachartbtc : any = [];
   public datechartbtc: any = [];
-  public chartbtc : any = [];  
+  public chartbtc : any = [];
 
   public datacharteth : any = [];
   public datecharteth: any = [];
@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit{
   public datosUsuario : UsuarioModel = JSON.parse(localStorage.getItem('currentUser')!);
   public idCuenta: number = 0;
 
-  
+
   constructor ( private dataChartBtc: DataChartService,
                 private dataChartEth: DataChartService,
                 private cotizacionDolar: DataChartService,
@@ -46,13 +46,11 @@ export class DashboardComponent implements OnInit{
     this.consultarMovimientosTodos.consultarMovimientos(this.idCuenta)
     .subscribe(resp => {
       this.movimientos = resp;
-      console.log(this.movimientos);
 
 
     this.consultarSaldosTodos.consultarSaldosTodos(this.idCuenta)
     .subscribe(resp => {
       this.saldos = resp;
-      console.log(this.saldos);
 
     this.Apiservice.consultarSaldo(this.idCuenta, 'ARS').subscribe(respuestaSaldo => { this.saldis = respuestaSaldo;});
 
@@ -71,8 +69,8 @@ export class DashboardComponent implements OnInit{
         .subscribe ( resp => {
         this.datecharteth = resp.map( fecha =>new Date(fecha[0]).toLocaleDateString("es-ES"))
         this.datacharteth = resp.map(cotizacion => cotizacion[1]*this.dolaroficial)
-        
-            
+
+
          this.chartbtc = new Chart('canvas-btc', {
             type: 'line',
             data: {
@@ -94,7 +92,7 @@ export class DashboardComponent implements OnInit{
                    plugins: {
                      legend: { display: false },
                    }
-                 }   
+                 }
           })
 
          this.charteth = new Chart('canvas-eth', {
@@ -122,7 +120,7 @@ export class DashboardComponent implements OnInit{
               })
         }
       )}
-    )}         
+    )}
     )}
     )}
     )}

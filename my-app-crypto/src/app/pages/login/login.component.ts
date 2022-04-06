@@ -62,8 +62,6 @@ export class LoginComponent implements OnInit {
   }
 
   obtenerPersonaLogin(mail: string, pass: string) {
-
-    console.log(mail, pass);
     this.personaService.obtenerPersonaPorId(mail, pass).subscribe(data => {
       window.location.reload();
     }, error => {
