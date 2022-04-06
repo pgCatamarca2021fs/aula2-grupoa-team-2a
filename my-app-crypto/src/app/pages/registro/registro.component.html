@@ -10,7 +10,7 @@
           <!--Primera Linea-->
           <div class="col-sm-3">
             <label class="input-group" for="email" class="form-label text-light">Email: </label>
-            <input formControlName="mail" maxlength="100" id="email" class="form-control"
+            <input formControlName="mail" (blur)="validarUsuario(this.form.get('cuil')?.value, this.form.get('mail')?.value)" maxlength="100" id="email" class="form-control"
               [class.border-danger]="MailValid" type="email" class="form-control" id="email" placeholder="Email"
               required>
             <!--Respuesta en campo-->
@@ -39,7 +39,7 @@
           </div>
           <div class="col-sm-4">
             <label for="IngresarCUIL" class="form-label text-light">Nº Cuil:</label>
-            <input formControlName="cuil" maxlength="11" class="form-control" type="email"
+            <input formControlName="cuil" (blur)="validarUsuario(this.form.get('cuil')?.value, this.form.get('mail')?.value)" maxlength="11" class="form-control" type="email"
               [class.border-danger]="CuilValid" class="form-control" id="ncuil" required>
             <!--Respuesta en campo-->
             <div *ngIf="Cuil?.errors && Cuil?.touched">
@@ -67,24 +67,28 @@
             </div>
           </div>
           <div class="col-sm-4">
+
             <label for="IngresarFecNac" class="form-label text-light">Fecha Nacimiento:</label>
-            <input formControlName="fecnac" maxlength="10" class="form-control" type="text" [class.border-danger]="FecnacValid"
-              id="fechanacim" style="display:list-item;" required>
-            <!--<input formControlName="fecnac" matInput [matDatepicker]="picker" class="form-control" type="text"
-            id="fecnac" style="display:list-item;">
-              <mat-datepicker #picker></mat-datepicker>
-              <mat-datepicker-toggle matSuffix [for]="picker" style="color: skyblue;"></mat-datepicker-toggle>-->
+            <!--<input formControlName="fecnac" maxlength="10" class="form-control" type="date" min="01-01-1970" max="01-01-2005" [class.border-danger]="FecnacValid"
+              onchange="onChange()" id="fechanacim" style="display:list-item;" required>-->
+            <!--<input formControlName="fecnac" maxlength="10" class="form-control" type="text" [class.border-danger]="FecnacValid"
+              id="fechanacim" style="display:list-item;" required>-->
+            <input formControlName="fecnac" [matDatepicker]="picker" class="form-control"
+            id="fecnac" style="display:inline; width: 190px;">
+            <mat-datepicker-toggle [for]="picker" style="color: skyblue;"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+
             <!--Respuesta en pantalla-->
             <div *ngIf="FecNac?.errors && FecNac?.touched ">
               <p *ngIf="FecNac?.hasError('required')" class="text-danger">
                 Fecha de Nacimiento Requerida.
               </p>
               <p *ngIf="Nombre?.hasError('pattern')" class="text-danger">
-                Formato debe ser "dd-mm-aaaa".
+                Formato debe ser "mm-dd-aaaa".
               </p>
             </div>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <label for="Ingresartelefono" class="form-label text-light">Teléfono:</label>
             <input formControlName="telefono" maxlength="12" class="form-control" type="text" [class.border-danger]="TelefonoValid"
               class="form-control" id="telefono" required>

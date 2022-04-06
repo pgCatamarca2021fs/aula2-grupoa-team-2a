@@ -13,12 +13,12 @@ import { ConvierteComponent } from './convierte/convierte.component';
 import { ExtraccionComponent } from './extraccion/extraccion.component';
 import { BrowserModule } from '@angular/platform-browser';
 
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule }  from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMomentDateModule }  from '@angular/material-moment-adapter';
 import { LayoutModule } from '../layout/layout.module';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 
 @NgModule({
@@ -41,12 +41,15 @@ import { LayoutModule } from '../layout/layout.module';
     MatDatepickerModule,
     MatFormFieldModule,
     MatMomentDateModule,
+    MatNativeDateModule,
     BrowserModule,
     LayoutModule,
     FormsModule
   ],
 
-  providers: [],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
+  ],
 
   bootstrap: [AppComponent],
 

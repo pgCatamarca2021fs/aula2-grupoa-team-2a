@@ -33,6 +33,9 @@ export class PersonaService {
   }));
   }
 
+  validaUsuario(cuil: string, mail: string):Observable<any>{
+     return this.http.get<UsuarioModel>(this.myAppCriptoUrl + "api/Validacion" +"?&cuil="+ cuil +"&mail="+ mail)
+  }
 
   insertarPersona(usuario: any):Observable<any>{
     return this.http.post(this.myAppCriptoUrl + this.myApiUrl, usuario);

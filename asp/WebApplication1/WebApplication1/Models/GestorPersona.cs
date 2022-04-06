@@ -104,6 +104,36 @@ namespace WebApplication1.Models
 
         }
 
+        public Persona validarPersona(string cuil, string mail)
+        {
+            Persona persona = new Persona();
+            try { 
+            using (SqlConnection connection = new SqlConnection(this.conectionString))
+            {
+                connection.Open();
+
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "validarUsuario";
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@cuil", cuil));
+                command.Parameters.Add(new SqlParameter("@mail", mail));
+                
+                SqlDataReader dataReader = command.ExecuteReader();
+                dataReader.Read();
+
+                persona.Cuil = dataReader.GetString(0);
+                persona.Mail = dataReader.GetString(1);
+
+                return persona;
+                }                
+            }
+            catch (Exception error)
+            {
+                return null;
+                
+            }
+        }
+
         public void CrearPersona(Persona persona)
         {
             using (SqlConnection connection = new SqlConnection(this.conectionString))
